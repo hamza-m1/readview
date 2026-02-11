@@ -11,4 +11,4 @@ As a **role** I can **capability** so that **received_benefit**
 
 ### Acceptance criteria
 
-- Acceptance_criteria
+- [] Acceptance_criteria
