@@ -9,10 +9,10 @@ class Book(models.Model):
     slug = models.SlugField(max_length=250, unique=True)
     author = models.CharField(max_length=100)
     genre = models.ManyToManyField('Genre', related_name='books')
-    publication_date = models.DateField()
-    length = models.PositiveIntegerField(help_text="Length in pages")
-    isbn = models.CharField(max_length=13, unique=True)
-    summary = models.TextField()
+    publication_date = models.DateField(blank=True, null=True)
+    length = models.PositiveIntegerField(help_text="Length in pages", blank=True, null=True)
+    isbn = models.CharField(max_length=13, unique=True, blank=True, null=True)
+    summary = models.TextField(blank=True, null=True)
     posted_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
     approved = models.BooleanField(default=False)
@@ -32,3 +32,18 @@ class Genre(models.Model):
 
     def __str__(self):
         return f"{self.name}"
+
+
+class Review(models.Model):
+    book = models.ForeignKey(Book, on_delete=models.CASCADE, related_name='reviews')
+    reviewer = models.ForeignKey(User, on_delete=models.CASCADE, related_name='reviews')
+    rating = models.IntegerField()
+    content = models.TextField()
+    posted_on = models.DateTimeField(auto_now_add=True)
+    approved = models.BooleanField(default=False)
+
+    class Meta:
+        ordering = ['-posted_on']
+
+    def __str__(self):
+        return f"Review of {self.book.title} by {self.reviewer.username}"
