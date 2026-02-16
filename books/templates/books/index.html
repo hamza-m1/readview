@@ -15,7 +15,7 @@
                     <p class="card-text">Published: {{ book.publication_date }}</p>
                     <!-- first 20 words from the summary -->
                     <p class="card-text">{{ book.summary|truncatewords:20 }}</p>
-                    <a href="#" class="btn btn-primary mt-auto">View Details</a>
+                    <a href="{% url 'book_detail' book.slug %}" class="btn btn-primary mt-auto">View Details</a>
                 </div>
             </div>
         </div>

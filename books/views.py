@@ -1,5 +1,4 @@
-from django.shortcuts import render
-from django.http import HttpResponse
+from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator
 from .models import Book
 
@@ -33,3 +32,25 @@ def book_list(request):
 
     }
     return render(request, 'books/index.html', context)
+
+def book_detail(request, slug):
+    """
+    Display a single :model: 'books.Book'.
+
+    **Context**
+
+    ``book``
+        A single book object from :model: 'books.Book' that matches the slug.
+
+    **Template**
+
+    :template:`books/detail.html`
+    """
+
+    queryset = Book.objects.filter(status=1)
+    book = get_object_or_404(queryset, slug=slug)
+
+    context = {
+        'book': book,
+    }
+    return render(request, 'books/book_detail.html', context)
