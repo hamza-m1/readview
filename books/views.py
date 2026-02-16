@@ -5,8 +5,6 @@ from .models import Book
 
 # Create your views here.
 
-def index(request):
-    return HttpResponse("Hello, world!")
 
 def book_list(request):
     """
