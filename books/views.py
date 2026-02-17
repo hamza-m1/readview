@@ -50,7 +50,12 @@ def book_detail(request, slug):
     queryset = Book.objects.filter(status=1)
     book = get_object_or_404(queryset, slug=slug)
 
+    reviews = book.reviews.all().order_by('-posted_on')
+    reviews_count = book.reviews.filter(approved=True).count()
+
     context = {
         'book': book,
+        'reviews': reviews,
+        'reviews_count': reviews_count
     }
     return render(request, 'books/book_detail.html', context)
