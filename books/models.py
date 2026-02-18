@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils.text import slugify
 
 # Create your models here.
 STATUS = ((0, "Draft"), (1, "Published"), (2, "User_submitted"))
@@ -23,6 +24,13 @@ class Book(models.Model):
 
     def __str__(self):
         return f"{self.title} by {self.author}"
+
+    def save(self, *args, **kwargs):
+        # auto-generate a unique slug from the title if not provided
+        if not self.slug:
+            base_slug = slugify(self.title)
+            self.slug = base_slug
+        super().save(*args, **kwargs)
 
 
 class Genre(models.Model):
