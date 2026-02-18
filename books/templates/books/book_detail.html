@@ -33,8 +33,10 @@
                 <div class="p-2 comments
           {% if not review.approved and review.reviewer == user %}
           faded{% elif not review.approved %} d-none{% endif %}">
-                    <div id="review{{ review.id }}">
+                    <div id="reviewRating{{ review.id }}" rating="{{ review.rating }}" class="mb-2">
                         <p><strong>Rating:</strong> {{ review.rating }}/5</p>
+                    </div>
+                    <div id="reviewContent{{ review.id }}">
                         {{ review.content | linebreaks }}
                     </div>
                     <p class="font-weight-bold">
@@ -47,6 +49,11 @@
                     <p class="text-warning">
                         This review is awaiting approval
                     </p>
+                    {% endif %}
+                    {% if user.is_authenticated and review.reviewer == user %}
+                    <button class="btn btn-edit" review_id="{{ review.id }}">
+                        Edit
+                    </button>
                     {% endif %}
                 </div>
                 {% endfor %}
@@ -71,4 +78,8 @@
     </div>
 </div>
 
+{% endblock %}
+
+{% block extras %}
+<script src="{% static 'js/reviews.js' %}"></script>
 {% endblock %}

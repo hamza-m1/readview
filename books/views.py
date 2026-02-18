@@ -1,7 +1,8 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, reverse
+from django.http import HttpResponseRedirect
 from django.core.paginator import Paginator
 from django.contrib import messages
-from .models import Book
+from .models import Book, Review
 from .forms import ReviewForm
 
 # Create your views here.
@@ -46,7 +47,7 @@ def book_detail(request, slug):
 
     **Template**
 
-    :template:`books/detail.html`
+    :template:`books/book_detail.html`
     """
 
     queryset = Book.objects.filter(status=1)
@@ -76,3 +77,42 @@ def book_detail(request, slug):
         'review_form': review_form,
     }
     return render(request, 'books/book_detail.html', context)
+
+
+def review_edit(request, slug, review_id):
+    """
+    Edit a review for a book.
+
+    **Context**
+
+    ``review``
+        A single review object from :model: 'books.Review' that matches the review_id.
+
+    **Template**
+
+    :template:`books/book_detail.html`
+    """
+
+    if request.method == "POST":
+
+        queryset = Book.objects.filter(status=1)
+        book = get_object_or_404(queryset, slug=slug)
+        review = get_object_or_404(Review, pk=review_id)
+        review_form = ReviewForm(data=request.POST, instance=review)
+
+        if review_form.is_valid() and review.reviewer == request.user:
+            review = review_form.save(commit=False)
+            review.book = book
+            review.approved = False
+            review.save()
+            messages.add_message(
+                request, messages.SUCCESS,
+                'Review updated successfully. Thanks for sharing.'
+            )
+        else:
+            messages.add_message(
+                request, messages.ERROR,
+                'Error updating review. Please try again.'
+            )
+
+    return HttpResponseRedirect(reverse('book_detail', args=[slug]))
