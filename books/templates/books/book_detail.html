@@ -33,15 +33,16 @@
                 <div class="p-2 comments
           {% if not review.approved and review.reviewer == user %}
           faded{% elif not review.approved %} d-none{% endif %}">
+                    <div id="review{{ review.id }}">
+                        <p><strong>Rating:</strong> {{ review.rating }}/5</p>
+                        {{ review.content | linebreaks }}
+                    </div>
                     <p class="font-weight-bold">
                         {{ review.reviewer }}
                         <span class="font-weight-normal">
                             {{ review.posted_on }}
                         </span> wrote:
                     </p>
-                    <div id="review{{ review.id }}">
-                        {{ review.content | linebreaks }}
-                    </div>
                     {% if not review.approved and review.reviewer == user %}
                     <p class="text-warning">
                         This review is awaiting approval
