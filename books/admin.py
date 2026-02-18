@@ -11,11 +11,18 @@ class BookAdmin(SummernoteModelAdmin):
     prepopulated_fields = {'slug': ('title',)}
     summernote_fields = ('summary',)
 
+
 @admin.register(Review)
 class ReviewAdmin(SummernoteModelAdmin):
     list_display = ('book', 'reviewer', 'approved', 'posted_on')
     list_filter = ('approved', 'posted_on', 'book')
     search_fields = ('reviewer',)
 
+
+@admin.register(Genre)
+class GenreAdmin(admin.ModelAdmin):
+    list_display = ('name', 'description')
+    prepopulated_fields = {'slug': ('name',)}
+
+
 # Register your models here.
-admin.site.register(Genre)
