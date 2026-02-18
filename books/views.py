@@ -3,7 +3,7 @@ from django.http import HttpResponseRedirect
 from django.core.paginator import Paginator
 from django.contrib import messages
 from .models import Book, Review
-from .forms import ReviewForm
+from .forms import ReviewForm, RequestBookForm
 
 # Create your views here.
 
@@ -35,6 +35,7 @@ def book_list(request):
 
     }
     return render(request, 'books/index.html', context)
+
 
 def book_detail(request, slug):
     """
@@ -143,3 +144,41 @@ def review_delete(request, slug, review_id):
         messages.add_message(request, messages.ERROR, 'You can only delete your own reviews!')
 
     return HttpResponseRedirect(reverse('book_detail', args=[slug]))
+
+
+def request_book(request):
+    """
+    Allow users to request a book to be added to the database.
+
+    **Context**
+
+    ``form``
+        A form for users to request a book to be added to the database.
+
+    **Template**
+
+    :template:`books/request_book.html`
+    """
+
+    if request.method == 'POST':
+        form = RequestBookForm(data=request.POST)
+        if form.is_valid():
+            new_book = form.save(commit=False)
+            new_book.status = 2
+            new_book.save()
+            form.save_m2m()
+            messages.add_message(
+                request, messages.SUCCESS,
+                'Book request submitted successfully. Thanks for contributing.'
+            )
+        else:
+            messages.add_message(
+                request, messages.ERROR,
+                'Error submitting book request. Please try again.'
+            )
+    form = RequestBookForm()
+
+    context = {
+        'form': form,
+    }
+    return render(request, 'books/request_book.html', context)
