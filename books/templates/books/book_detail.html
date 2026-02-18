@@ -40,10 +40,10 @@
                         {{ review.content | linebreaks }}
                     </div>
                     <p class="font-weight-bold">
-                        {{ review.reviewer }}
+                        By {{ review.reviewer }} on
                         <span class="font-weight-normal">
                             {{ review.posted_on }}
-                        </span> wrote:
+                        </span>
                     </p>
                     {% if not review.approved and review.reviewer == user %}
                     <p class="text-warning">
