@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator
+from django.contrib import messages
 from .models import Book
 from .forms import ReviewForm
 
@@ -61,7 +62,11 @@ def book_detail(request, slug):
             new_review.reviewer = request.user
             new_review.book = book
             new_review.save()
-
+            messages.add_message(
+                request,
+                messages.SUCCESS,
+                'Review submitted successfully, awaiting approval.'
+                )
     review_form = ReviewForm()
 
     context = {
