@@ -25,6 +25,10 @@ def book_list(request):
 
     books = Book.objects.filter(status=1).order_by('-publication_date')
 
+    if request.method == 'POST':
+        search_query = request.POST.get('search_query', '')
+        books = books.filter(title__icontains=search_query) | books.filter(author__icontains=search_query)
+
     paginator = Paginator(books, 6)  # Show 6 books per page
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
