@@ -37,6 +37,10 @@ def book_list(request):
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
 
+    for book in page_obj:
+        book.average_rating = book.average_rating()
+
+
     context = {
         'books': books,
         'page_obj': page_obj,
@@ -79,11 +83,14 @@ def book_detail(request, slug):
                 )
     review_form = ReviewForm()
 
+    average_rating = book.average_rating()
+
     context = {
         'book': book,
         'reviews': reviews,
         'reviews_count': reviews_count,
         'review_form': review_form,
+        'average_rating': average_rating,
     }
     return render(request, 'books/book_detail.html', context)
 

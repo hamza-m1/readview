@@ -10,6 +10,13 @@
         <h1>{{ book.title }}</h1>
         <p><strong>Author:</strong> {{ book.author }}</p>
         <p><strong>Publication Date:</strong> {{ book.publication_date }}</p>
+        <h5 class="card-title">Avg rating:
+            <span class="fa fa-star {% if average_rating > 0 %} checked {% endif %}"></span>
+            <span class="fa fa-star {% if average_rating > 1 %} checked {% endif %}"></span>
+            <span class="fa fa-star {% if average_rating > 2 %} checked {% endif %}"></span>
+            <span class="fa fa-star {% if average_rating > 3 %} checked {% endif %}"></span>
+            <span class="fa fa-star {% if average_rating > 4 %} checked {% endif %}"></span>
+        </h5>
         <p><strong>Summary:</strong></p>
         <p>{{ book.summary | safe }}</p>
     </div>
@@ -34,12 +41,18 @@
           {% if not review.approved and review.reviewer == user %}
           faded{% elif not review.approved %} d-none{% endif %}">
                     <div id="reviewRating{{ review.id }}" rating="{{ review.rating }}" class="mb-2">
-                        <p><strong>Rating:</strong> {{ review.rating }}/5</p>
+                        <p><strong>Rating:</strong>
+                            <span class="fa fa-star {% if review.rating > 0 %} checked {% endif %}"></span>
+                            <span class="fa fa-star {% if review.rating > 1 %} checked {% endif %}"></span>
+                            <span class="fa fa-star {% if review.rating > 2 %} checked {% endif %}"></span>
+                            <span class="fa fa-star {% if review.rating > 3 %} checked {% endif %}"></span>
+                            <span class="fa fa-star {% if review.rating > 4 %} checked {% endif %}"></span>
+                        </p>
                     </div>
                     <div id="reviewContent{{ review.id }}">
                         {{ review.content | linebreaks }}
                     </div>
-                    <p class="font-weight-bold">
+                    <p class="font-weight-bold fst-italic">
                         By {{ review.reviewer }} on
                         <span class="font-weight-normal">
                             {{ review.posted_on }}
@@ -95,8 +108,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <a id="deleteConfirm" href="#" class="btn
-          btn-danger">Delete</a>
+                <a id="deleteConfirm" href="#" class="btn btn-danger">Delete</a>
             </div>
         </div>
     </div>

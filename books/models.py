@@ -32,6 +32,12 @@ class Book(models.Model):
             self.slug = base_slug
         super().save(*args, **kwargs)
 
+    def average_rating(self):
+        approved_reviews = self.reviews.filter(approved=True)
+        if approved_reviews.exists():
+            return approved_reviews.aggregate(models.Avg('rating'))['rating__avg']
+        return None
+
 
 class Genre(models.Model):
     name = models.CharField(max_length=50, unique=True)
