@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, reverse
 from django.http import HttpResponseRedirect
 from django.core.paginator import Paginator
 from django.contrib import messages
-from .models import Book, Review
+from .models import Book, Review, Genre
 from .forms import ReviewForm, RequestBookForm
 
 # Create your views here.
@@ -24,10 +24,14 @@ def book_list(request):
     """
 
     books = Book.objects.filter(status=1).order_by('-publication_date')
+    genres = Genre.objects.all()
 
-    if request.method == 'POST':
+    if request.method == 'POST' and 'search_query' in request.POST:
         search_query = request.POST.get('search_query', '')
         books = books.filter(title__icontains=search_query) | books.filter(author__icontains=search_query)
+    elif request.method == 'POST' and 'genre_filter' in request.POST:
+        genre_filter = request.POST.get('genre_filter', '')
+        books = books.filter(genre__name=genre_filter)
 
     paginator = Paginator(books, 6)  # Show 6 books per page
     page_number = request.GET.get("page")
@@ -35,8 +39,8 @@ def book_list(request):
 
     context = {
         'books': books,
-        'page_obj': page_obj
-
+        'page_obj': page_obj,
+        'genres': genres,
     }
     return render(request, 'books/index.html', context)
 

@@ -3,13 +3,30 @@
 
 {% block content %}
 <!-- Search bar -->
-<div class="card">
-    <div class="card-body">
-        <form method="POST" action="{% url 'home' %}" class="d-flex">
-            {% csrf_token %}
-            <input type="text" name="search_query" placeholder="Search books..." class="form-control me-4">
-            <button type="submit" class="btn btn-primary mt-2">Search</button>
-        </form>
+<div class="container">
+    <div class="card">
+        <div class="card-body">
+            <form method="POST" action="{% url 'home' %}" class="d-flex">
+                {% csrf_token %}
+                <input type="text" name="search_query" placeholder="Search books..." class="form-control me-4">
+                <button type="submit" class="btn btn-primary mt-2">Search</button>
+            </form>
+        </div>
+    </div>
+    <!-- search by genre -->
+    <div class="card">
+        <div class="card-body">
+            <form method="POST" action="{% url 'home' %}" class="d-flex">
+                {% csrf_token %}
+                <select name="genre_filter" class="form-select me-4">
+                    <option value="">Select Genre</option>
+                    {% for genre in genres %}
+                    <option value="{{ genre.name }}">{{ genre.name }}</option>
+                    {% endfor %}
+                </select>
+                <button type="submit" class="btn btn-primary mt-2">Search by Genre</button>
+            </form>
+        </div>
     </div>
 </div>
 <!-- Book list -->
