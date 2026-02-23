@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<!-- each card when clicked should redirect to that books book_detail page -->
+<div class="container mt-4">
+    <h1>My Reviews</h1>
+    <div class="row">
+        {% for review in reviews %}
+        <div class="col-md-8 card mb-4  mt-3 ">
+            <h3>
+                <a href="{% url 'book_detail' review.book.slug %}">{{ review.book.title }}</a>
+            </h3>
+            <div class="card-body">
+                <div id="reviewRating{{ review.id }}" rating="{{ review.rating }}" class="mb-2">
+                    <p><strong>Rating:</strong>
+                        <span class="fa fa-star {% if review.rating > 0 %} checked {% endif %}"></span>
+                        <span class="fa fa-star {% if review.rating > 1 %} checked {% endif %}"></span>
+                        <span class="fa fa-star {% if review.rating > 2 %} checked {% endif %}"></span>
+                        <span class="fa fa-star {% if review.rating > 3 %} checked {% endif %}"></span>
+                        <span class="fa fa-star {% if review.rating > 4 %} checked {% endif %}"></span>
+                    </p>
+                </div>
+                <div id="reviewContent{{ review.id }}">
+                    {{ review.content | linebreaks }}
+                </div>
+                <p class="font-weight-bold fst-italic">
+                    Posted on
+                    <span class="font-weight-normal">
+                        {{ review.posted_on }}
+                    </span>
+                </p>
+                {% if not review.approved and review.reviewer == user %}
+                <p class="text-warning">
+                    This review is awaiting approval
+                </p>
+                {% endif %}
+            </div>
+        </div>
+        {% empty %}
+        <p>You have not posted any reviews yet.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

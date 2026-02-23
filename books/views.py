@@ -197,3 +197,26 @@ def request_book(request):
         'form': form,
     }
     return render(request, 'books/request_book.html', context)
+
+
+# this will show a page with all the current users reviews, with each review when clicked will redirect to the book detail page.
+def user_reviews(request):
+    """
+    Display all reviews submitted by the current user.
+
+    **Context**
+
+    ``reviews``
+        A queryset of all reviews submitted by the current user.
+
+    **Template**
+
+    :template:`books/my_reviews.html`
+    """
+
+    reviews = Review.objects.filter(reviewer=request.user).order_by('-posted_on')
+
+    context = {
+        'reviews': reviews,
+    }
+    return render(request, 'books/my_reviews.html', context)
