@@ -50,6 +50,10 @@
                         <a class="nav-link {% if request.path == my_reviews_url %}active{% endif %}" aria-current="page"
                             href="{% url 'my_reviews' %}">My reviews</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == my_favourites_url %}active{% endif %}"
+                            aria-current="page" href="{% url 'my_favourites' %}">My favourites</a>
+                    </li>
                     {% else %}
                     <li class="nav-item">
                         <a class="nav-link {% if request.path == signup_url %}active{% endif %}" aria-current="page"
