@@ -58,6 +58,7 @@ class Review(models.Model):
 
     class Meta:
         ordering = ['-posted_on']
+        unique_together = ('book', 'reviewer')
 
     def __str__(self):
         return f"Review of {self.book.title} by {self.reviewer.username}"

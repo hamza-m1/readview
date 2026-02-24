@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, reverse
 from django.http import HttpResponseRedirect
 from django.core.paginator import Paginator
 from django.contrib import messages
+from django.db import IntegrityError
 from .models import Book, Review, Genre, Favourite
 from .forms import ReviewForm, RequestBookForm
 
@@ -74,19 +75,37 @@ def book_detail(request, slug):
 
     reviews = book.reviews.all().order_by('-posted_on')
     reviews_count = book.reviews.filter(approved=True).count()
+    review_form = ReviewForm(user=request.user, book=book)
 
     if request.method == 'POST':
         if 'rating' in request.POST:
-            review_form = ReviewForm(data=request.POST)
-            if review_form.is_valid():
-                new_review = review_form.save(commit=False)
-                new_review.reviewer = request.user
-                new_review.book = book
-                new_review.save()
-                messages.add_message(
-                    request,
-                    messages.SUCCESS,
-                    'Review submitted successfully, awaiting approval.'
+            if not request.user.is_authenticated:
+                messages.add_message(request, messages.ERROR, 'Please log in to leave a review.')
+            else:
+                review_form = ReviewForm(data=request.POST, user=request.user, book=book)
+                if review_form.is_valid():
+                    new_review = review_form.save(commit=False)
+                    new_review.reviewer = request.user
+                    new_review.book = book
+                    try:
+                        new_review.save()
+                        messages.add_message(
+                            request,
+                            messages.SUCCESS,
+                            'Review submitted successfully, awaiting approval.'
+                            )
+                        return HttpResponseRedirect(reverse('book_detail', args=[slug]))
+                    except IntegrityError:
+                        messages.add_message(
+                            request,
+                            messages.ERROR,
+                            'You have already reviewed this book.'
+                        )
+                else:
+                    messages.add_message(
+                        request,
+                        messages.ERROR,
+                        'Error submitting review.'
                     )
         if 'favourite' in request.POST:
             if not request.user.is_authenticated:
@@ -100,8 +119,6 @@ def book_detail(request, slug):
                     Favourite.objects.create(user=request.user, book=book)
                     messages.add_message(request, messages.SUCCESS, 'Book added to favourites.')
                     is_favourited = True
-
-    review_form = ReviewForm()
 
     average_rating = book.average_rating()
 
