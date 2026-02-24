@@ -1,15 +1,18 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.text import slugify
+from cloudinary.models import CloudinaryField
 
 # Create your models here.
 STATUS = ((0, "Draft"), (1, "Published"), (2, "User_submitted"))
+
 
 class Book(models.Model):
     title = models.CharField(max_length=250, unique=True)
     slug = models.SlugField(max_length=250, unique=True)
     author = models.CharField(max_length=100)
     genre = models.ManyToManyField('Genre', related_name='books')
+    cover_image = CloudinaryField('image', default='placeholder')
     publication_date = models.DateField(blank=True, null=True)
     length = models.PositiveIntegerField(help_text="Length in pages", blank=True, null=True)
     isbn = models.CharField(max_length=13, unique=True, blank=True, null=True)
