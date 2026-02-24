@@ -21,6 +21,15 @@
                     <span class="fa fa-star {% if favourite.book.average_rating > 4 %} checked {% endif %}"></span>
                 </p>
                 <p><strong>Publication Date:</strong> {{ favourite.book.publication_date }}</p>
+                <form method="post" action="{% url 'my_favourites' %}">
+                    {% csrf_token %}
+                    {% if user.is_authenticated %}
+                    {% if favourite.user == user %}
+                    <input type="hidden" name="favourite_id" value="{{ favourite.id }}">
+                    <button type="submit" class="btn btn-danger">Remove from Favourites</button>
+                    {% endif %}
+                    {% endif %}
+                </form>
             </div>
         </div>
         {% empty %}

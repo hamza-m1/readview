@@ -220,7 +220,6 @@ def request_book(request):
     return render(request, 'books/request_book.html', context)
 
 
-# this will show a page with all the current users reviews, with each review when clicked will redirect to the book detail page.
 def user_reviews(request):
     """
     Display all reviews submitted by the current user.
@@ -243,7 +242,6 @@ def user_reviews(request):
     return render(request, 'books/my_reviews.html', context)
 
 
-# this will show a page with all the current users favourite books, with each book when clicked will redirect to the book detail page.
 def user_favourites(request):
     """
     Display all favourite books of the current user.
@@ -259,6 +257,12 @@ def user_favourites(request):
     """
 
     favourites = Favourite.objects.filter(user=request.user).order_by('book__title')
+
+    if request.method == 'POST' and 'favourite_id' in request.POST:
+        favourite_id = request.POST['favourite_id']
+        favourite = get_object_or_404(Favourite, id=favourite_id, user=request.user)
+        favourite.delete()
+        messages.add_message(request, messages.SUCCESS, 'Book removed from favourites.')
 
     context = {
         'favourites': favourites,
