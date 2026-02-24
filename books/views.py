@@ -40,7 +40,6 @@ def book_list(request):
     for book in page_obj:
         book.average_rating = book.average_rating()
 
-
     context = {
         'books': books,
         'page_obj': page_obj,
@@ -77,6 +76,18 @@ def book_detail(request, slug):
     reviews_count = book.reviews.filter(approved=True).count()
 
     if request.method == 'POST':
+        if 'rating' in request.POST:
+            review_form = ReviewForm(data=request.POST)
+            if review_form.is_valid():
+                new_review = review_form.save(commit=False)
+                new_review.reviewer = request.user
+                new_review.book = book
+                new_review.save()
+                messages.add_message(
+                    request,
+                    messages.SUCCESS,
+                    'Review submitted successfully, awaiting approval.'
+                    )
         if 'favourite' in request.POST:
             if not request.user.is_authenticated:
                 messages.add_message(request, messages.ERROR, 'Please log in to manage favourites.')
@@ -89,18 +100,7 @@ def book_detail(request, slug):
                     Favourite.objects.create(user=request.user, book=book)
                     messages.add_message(request, messages.SUCCESS, 'Book added to favourites.')
                     is_favourited = True
-        if 'review_form' in request.POST:
-            review_form = ReviewForm(data=request.POST)
-            if review_form.is_valid():
-                new_review = review_form.save(commit=False)
-                new_review.reviewer = request.user
-                new_review.book = book
-                new_review.save()
-                messages.add_message(
-                    request,
-                    messages.SUCCESS,
-                    'Review submitted successfully, awaiting approval.'
-                    )
+
     review_form = ReviewForm()
 
     average_rating = book.average_rating()
