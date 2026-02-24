@@ -63,9 +63,9 @@
                             <span class="fa fa-star {% if review.rating > 4 %} checked {% endif %}"></span>
                         </p>
                     </div>
-                    <div id="reviewContent{{ review.id }}">
+                    <p id="reviewContent{{ review.id }}">
                         {{ review.content | safe }}
-                    </div>
+                    </p>
                     <p class="font-weight-bold fst-italic">
                         By {{ review.reviewer }} on
                         <span class="font-weight-normal">

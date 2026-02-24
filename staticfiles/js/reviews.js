@@ -10,14 +10,17 @@ const deleteConfirm = document.getElementById("deleteConfirm");
 
 for (let button of editButtons) {
   button.addEventListener("click", (e) => {
+    console.log("in the edit button event listener");
     let reviewId = e.target.getAttribute("review_id");
     // let reviewRating = document
     //   .getElementById(`reviewRating${reviewId}`)
     //   .getAttribute("rating");
     // console.log(reviewRating);
-    let reviewContent = document.getElementById(`reviewContent${reviewId}`)
-      .childNodes[1].textContent;
-    console.log(reviewContent);
+    console.log(document.getElementById(`reviewContent${reviewId}`));
+    let reviewContent = document
+      .getElementById(`reviewContent${reviewId}`)
+      .innerText.trim();
+    // console.log(reviewContent);
     // reviewRating.value = reviewRating;
     // console.log(`reviewRating: ${reviewRating}`);
     reviewText.value = reviewContent;
