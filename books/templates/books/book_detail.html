@@ -19,6 +19,20 @@
         </h5>
         <p><strong>Summary:</strong></p>
         <p>{{ book.summary | safe }}</p>
+        <!-- add a add to favourites button -->
+        <form method="post" action="{% url 'book_detail' book.slug %}">
+            {% csrf_token %}
+            <input type="hidden" name="favourite" value="true">
+            {% if user.is_authenticated %}
+            {% if is_favourited %}
+            <button type="submit" class="btn btn-danger">Remove from Favourites</button>
+            {% else %}
+            <button type="submit" class="btn btn-primary">Add to Favourites</button>
+            {% endif %}
+            {% else %}
+            <button type="button" class="btn btn-secondary disabled">Login to add to Favourites</button>
+            {% endif %}
+        </form>
     </div>
     <!-- Displaying count of reviews -->
     <div class="row">

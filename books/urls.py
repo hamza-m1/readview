@@ -5,6 +5,7 @@ urlpatterns = [
     path('', views.book_list, name='home'),
     path('request_book/', views.request_book, name='request_book'),
     path('my_reviews/', views.user_reviews, name='my_reviews'),
+    path('my_favourites/', views.user_favourites, name='my_favourites'),
     path('<slug:slug>/', views.book_detail, name='book_detail'),
     path('<slug:slug>/edit_review/<int:review_id>',
          views.review_edit, name='review_edit'),

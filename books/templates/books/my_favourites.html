@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>My Favourites</h1>
+    <div class="row">
+        {% for favourite in favourites %}
+        <div class="col-md-8 card mb-4  mt-3 ">
+            <h3>
+                <a href="{% url 'book_detail' favourite.book.slug %}">{{ favourite.book.title }}</a>
+            </h3>
+            <div class="card-body">
+                <p><strong>Author:</strong> {{ favourite.book.author }}</p>
+                <p><strong>Genres:</strong> {{ favourite.book.genre.all|join:", " }}</p>
+                <p><strong>Average Rating:</strong>
+                    <span class="fa fa-star {% if favourite.book.average_rating > 0 %} checked {% endif %}"></span>
+                    <span class="fa fa-star {% if favourite.book.average_rating > 1 %} checked {% endif %}"></span>
+                    <span class="fa fa-star {% if favourite.book.average_rating > 2 %} checked {% endif %}"></span>
+                    <span class="fa fa-star {% if favourite.book.average_rating > 3 %} checked {% endif %}"></span>
+                    <span class="fa fa-star {% if favourite.book.average_rating > 4 %} checked {% endif %}"></span>
+                </p>
+                <p><strong>Publication Date:</strong> {{ favourite.book.publication_date }}</p>
+            </div>
+        </div>
+        {% empty %}
+        <p>You have not added any books to your favourites yet.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
