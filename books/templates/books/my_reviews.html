@@ -22,7 +22,7 @@
                     </p>
                 </div>
                 <div id="reviewContent{{ review.id }}">
-                    {{ review.content | linebreaks }}
+                    {{ review.content | safe }}
                 </div>
                 <p class="font-weight-bold fst-italic">
                     Posted on
