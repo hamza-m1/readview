@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Book, Genre, Review
+from .models import Book, Genre, Review, Favourite
 from django_summernote.admin import SummernoteModelAdmin
 
 
@@ -24,5 +24,9 @@ class GenreAdmin(admin.ModelAdmin):
     list_display = ('name', 'description')
     prepopulated_fields = {'slug': ('name',)}
 
+
+@admin.register(Favourite)
+class FavouriteAdmin(admin.ModelAdmin):
+    list_display = ('user', 'book')
 
 # Register your models here.
