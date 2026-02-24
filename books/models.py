@@ -61,3 +61,14 @@ class Review(models.Model):
 
     def __str__(self):
         return f"Review of {self.book.title} by {self.reviewer.username}"
+
+
+class Favourite(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='favourites')
+    book = models.ForeignKey(Book, on_delete=models.CASCADE, related_name='favourited_by')
+
+    class Meta:
+        unique_together = ('user', 'book')
+
+    def __str__(self):
+        return f"{self.user.username} favourited {self.book.title}"
