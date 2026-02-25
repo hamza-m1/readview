@@ -65,7 +65,11 @@
                     {% if book.genre.all %}
                     <div class="mb-2">
                         {% for genre in book.genre.all %}
-                        <span class="badge bg-secondary me-1">{{ genre.name }}</span>
+                        <form method="POST" action="{% url 'home' %}" class="d-inline">
+                            {% csrf_token %}
+                            <input type="hidden" name="genre_filter" value="{{ genre.name }}">
+                            <button type="submit" class="badge bg-secondary me-1 border-0">{{ genre.name }}</button>
+                        </form>
                         {% endfor %}
                     </div>
                     {% endif %}
