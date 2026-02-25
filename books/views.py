@@ -78,36 +78,38 @@ def book_detail(request, slug):
     review_form = ReviewForm(user=request.user, book=book)
 
     if request.method == 'POST':
-        if 'rating' in request.POST:
-            if not request.user.is_authenticated:
-                messages.add_message(request, messages.ERROR, 'Please log in to leave a review.')
-            else:
-                review_form = ReviewForm(data=request.POST, user=request.user, book=book)
-                if review_form.is_valid():
-                    new_review = review_form.save(commit=False)
-                    new_review.reviewer = request.user
-                    new_review.book = book
-                    try:
-                        new_review.save()
-                        messages.add_message(
-                            request,
-                            messages.SUCCESS,
-                            'Review submitted successfully, awaiting approval.'
-                            )
-                        return HttpResponseRedirect(reverse('book_detail', args=[slug]))
-                    except IntegrityError:
-                        messages.add_message(
-                            request,
-                            messages.ERROR,
-                            'You have already reviewed this book.'
-                        )
-                else:
+        if not request.user.is_authenticated:
+            messages.add_message(request, messages.ERROR, 'Please log in to leave a review.')
+        elif 'rating' in request.POST:
+            review_form = ReviewForm(
+                data=request.POST, user=request.user, book=book)
+            if review_form.is_valid():
+                new_review = review_form.save(commit=False)
+                new_review.reviewer = request.user
+                new_review.book = book
+                try:
+                    new_review.save()
+                    messages.add_message(
+                        request,
+                        messages.SUCCESS,
+                        'Review submitted successfully, awaiting '
+                        'approval.'
+                    )
+                    return HttpResponseRedirect(
+                        reverse('book_detail', args=[slug]))
+                except IntegrityError:
                     messages.add_message(
                         request,
                         messages.ERROR,
-                        'Error submitting review.'
+                        'You have already reviewed this book.'
                     )
-        if 'favourite' in request.POST:
+            else:
+                messages.add_message(
+                    request,
+                    messages.ERROR,
+                    'Error submitting review.'
+                )
+        elif 'favourite' in request.POST:
             if not request.user.is_authenticated:
                 messages.add_message(request, messages.ERROR, 'Please log in to manage favourites.')
             else:
