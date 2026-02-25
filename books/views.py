@@ -27,9 +27,11 @@ def book_list(request):
     books = Book.objects.filter(status=1).order_by('-publication_date')
     genres = Genre.objects.all()
     selected_genre = ''
+    selected_search_query = ''
 
     if request.method == 'POST' and 'search_query' in request.POST:
-        search_query = request.POST.get('search_query', '')
+        search_query = request.POST.get('search_query', '').strip()
+        selected_search_query = search_query
         books = books.filter(title__icontains=search_query) | books.filter(author__icontains=search_query)
     elif request.method == 'POST' and 'genre_filter' in request.POST:
         genre_filter = request.POST.get('genre_filter', '')
@@ -48,6 +50,7 @@ def book_list(request):
         'page_obj': page_obj,
         'genres': genres,
         'selected_genre': selected_genre,
+        'selected_search_query': selected_search_query,
     }
     return render(request, 'books/index.html', context)
 
