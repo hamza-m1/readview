@@ -5,3 +5,24 @@
 .checked {
   color: orange;
 }
+
+.book-card {
+  position: relative;
+  cursor: pointer;
+  transition: box-shadow 0.2s ease-in-out;
+}
+
+.book-card:hover {
+  box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.25);
+}
+
+.book-card form,
+.book-card button {
+  position: relative;
+  z-index: 2;
+}
+
+.genre-badge {
+  font-size: 0.85rem;
+  padding: 0.4em 0.65em;
+}
