@@ -39,19 +39,24 @@
             <p><strong>Summary:</strong></p>
             <p>{{ book.summary | safe }}</p>
             <!-- Add to Favourites button -->
+            {% if user.is_authenticated %}
+            {% if is_favourited %}
+            <form id="favouriteForm" method="post" action="{% url 'book_detail' book.slug %}">
+                {% csrf_token %}
+                <input type="hidden" name="favourite" value="true">
+                <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                    data-bs-target="#removeFavouriteModal">Remove from Favourites</button>
+            </form>
+            {% else %}
             <form method="post" action="{% url 'book_detail' book.slug %}">
                 {% csrf_token %}
                 <input type="hidden" name="favourite" value="true">
-                {% if user.is_authenticated %}
-                {% if is_favourited %}
-                <button type="submit" class="btn btn-danger">Remove from Favourites</button>
-                {% else %}
                 <button type="submit" class="btn btn-primary">Add to Favourites</button>
-                {% endif %}
-                {% else %}
-                <button type="button" class="btn btn-secondary disabled">Login to add to Favourites</button>
-                {% endif %}
             </form>
+            {% endif %}
+            {% else %}
+            <button type="button" class="btn btn-secondary disabled">Login to add to Favourites</button>
+            {% endif %}
         </div>
         <!-- Displaying count of reviews -->
         <div class="row">
@@ -127,7 +132,8 @@
         </div>
     </div>
 
-    <!-- Delete confirmation modal -->
+    <!-- Delete review confirmation modal -->
+    {% if user.is_authenticated %}
     <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -146,6 +152,28 @@
             </div>
         </div>
     </div>
+    {% endif %}
+    <!-- Remove Favourite confirmation Modal -->
+    {% if user.is_authenticated and is_favourited %}
+    <div class="modal fade" id="removeFavouriteModal" tabindex="-1" aria-labelledby="removeFavouriteModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="removeFavouriteModalLabel">Remove from favourites?</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to remove this book from your favourites?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" form="favouriteForm" class="btn btn-danger">Remove</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
 
     {% endblock %}
 

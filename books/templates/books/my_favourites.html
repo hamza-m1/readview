@@ -21,12 +21,15 @@
                     <span class="fa fa-star {% if favourite.book.average_rating > 4 %} checked {% endif %}"></span>
                 </p>
                 <p><strong>Publication Date:</strong> {{ favourite.book.publication_date }}</p>
-                <form method="post" action="{% url 'my_favourites' %}">
+                <form id="favouriteForm{{ favourite.id }}" method="post" action="{% url 'my_favourites' %}">
                     {% csrf_token %}
                     {% if user.is_authenticated %}
                     {% if favourite.user == user %}
                     <input type="hidden" name="favourite_id" value="{{ favourite.id }}">
-                    <button type="submit" class="btn btn-danger">Remove from Favourites</button>
+                    <button type="button" class="btn btn-danger btn-remove-favourite" data-bs-toggle="modal"
+                        data-bs-target="#removeFavouriteModal" data-form-id="favouriteForm{{ favourite.id }}">
+                        Remove from Favourites
+                    </button>
                     {% endif %}
                     {% endif %}
                 </form>
@@ -37,4 +40,28 @@
         {% endfor %}
     </div>
 </div>
+
+<div class="modal fade" id="removeFavouriteModal" tabindex="-1" aria-labelledby="removeFavouriteModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="removeFavouriteModalLabel">Remove from favourites?</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to remove this book from your favourites?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" id="removeFavouriteConfirm" class="btn btn-danger">Remove</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block extras %}
+<script src="{% static 'js/my-favourites.js' %}"></script>
 {% endblock %}
