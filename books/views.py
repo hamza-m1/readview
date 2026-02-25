@@ -26,12 +26,14 @@ def book_list(request):
 
     books = Book.objects.filter(status=1).order_by('-publication_date')
     genres = Genre.objects.all()
+    selected_genre = ''
 
     if request.method == 'POST' and 'search_query' in request.POST:
         search_query = request.POST.get('search_query', '')
         books = books.filter(title__icontains=search_query) | books.filter(author__icontains=search_query)
     elif request.method == 'POST' and 'genre_filter' in request.POST:
         genre_filter = request.POST.get('genre_filter', '')
+        selected_genre = genre_filter
         books = books.filter(genre__name=genre_filter)
 
     paginator = Paginator(books, 6)  # Show 6 books per page
@@ -45,6 +47,7 @@ def book_list(request):
         'books': books,
         'page_obj': page_obj,
         'genres': genres,
+        'selected_genre': selected_genre,
     }
     return render(request, 'books/index.html', context)
 

@@ -31,7 +31,7 @@
 </div>
 <!-- Book list -->
 <div class="container mt-4">
-    <h1>Book List</h1>
+    <h1>Book List{% if selected_genre %}: {{ selected_genre }}{% endif %}</h1>
     <div class="row">
         {% for book in page_obj %}
         <div class="col-xl-4 col-sm-6 mb-4">
