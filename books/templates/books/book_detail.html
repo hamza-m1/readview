@@ -25,6 +25,13 @@
                 <span class="fa fa-star {% if average_rating > 3 %} checked {% endif %}"></span>
                 <span class="fa fa-star {% if average_rating > 4 %} checked {% endif %}"></span>
             </h5>
+            {% if book.genre.all %}
+            <div class="mb-2">
+                {% for genre in book.genre.all %}
+                <span class="badge bg-secondary me-1">{{ genre.name }}</span>
+                {% endfor %}
+            </div>
+            {% endif %}
             <p><strong>Summary:</strong></p>
             <p>{{ book.summary | safe }}</p>
             <!-- Add to Favourites button -->

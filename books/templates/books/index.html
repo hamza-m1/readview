@@ -62,6 +62,13 @@
                         <span class="fa fa-star {% if book.average_rating > 4 %} checked {% endif %}"></span>
                     </p>
                     <p class="card-text">Published: {{ book.publication_date }}</p>
+                    {% if book.genre.all %}
+                    <div class="mb-2">
+                        {% for genre in book.genre.all %}
+                        <span class="badge bg-secondary me-1">{{ genre.name }}</span>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
                     <p class="card-text">{{ book.summary | truncatewords:40 | safe }}</p>
                     <a href="{% url 'book_detail' book.slug %}" class="btn btn-primary mt-auto">View Details</a>
                 </div>
