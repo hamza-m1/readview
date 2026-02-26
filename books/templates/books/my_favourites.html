@@ -16,7 +16,7 @@
                     {% if favourite.book.genre.all %}
                     <div class="mb-3">
                         {% for genre in favourite.book.genre.all %}
-                        <span class="badge genre-badge bg-secondary me-1">{{ genre.name }}</span>
+                        <span class="badge genre-badge btn-info me-1">{{ genre.name }}</span>
                         {% endfor %}
                     </div>
                     {% endif %}

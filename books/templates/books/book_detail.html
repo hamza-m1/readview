@@ -22,7 +22,7 @@
                 <form method="POST" action="{% url 'home' %}" class="d-inline">
                     {% csrf_token %}
                     <input type="hidden" name="genre_filter" value="{{ genre.name }}">
-                    <button type="submit" class="badge genre-badge bg-secondary me-1 border-0">{{ genre.name }}</button>
+                    <button type="submit" class="badge genre-badge btn-info me-1 border-0">{{ genre.name }}</button>
                 </form>
                 {% endfor %}
             </div>

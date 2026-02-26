@@ -64,8 +64,10 @@ h6,
 }
 
 .genre-badge {
-  font-size: 0.85rem;
-  padding: 0.4em 0.65em;
+  font-size: 1rem;
+  padding: 0.5em 0.75em;
+  background-color: var(--light-blue);
+  color: black;
 }
 
 .review-card {
