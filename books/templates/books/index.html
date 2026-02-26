@@ -59,7 +59,7 @@
                 <div class="card-body d-flex flex-column pb-0">
                     <a href="{% url 'book_detail' book.slug %}" class="stretched-link"
                         aria-label="View details for {{ book.title }}"></a>
-                    <h5 class="card-title">{{ book.title }}</h5>
+                    <h2 class="h5 card-title">{{ book.title }}</h2>
                     {% if book.genre.all %}
                     <div class="mb-2">
                         {% for genre in book.genre.all %}
@@ -81,7 +81,7 @@
                         <span class="fa fa-star {% if book.average_rating > 4 %} checked {% endif %}"></span>
                     </p>
                     <p class="card-text"><strong>Published:</strong> {{ book.publication_date }}</p>
-                    <p class="card-text mb-0">{{ book.summary | truncatewords:40 | safe }}</p>
+                    <p class="card-text mb-0">{{ book.summary|striptags|truncatewords:40 }}</p>
                 </div>
             </div>
         </div>
