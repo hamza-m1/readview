@@ -2,16 +2,15 @@
 {% load static %}
 
 {% block content %}
-<!-- each card when clicked should redirect to that books book_detail page -->
 <div class="container mt-4">
-    <h1>My Reviews</h1>
-    <div class="row">
+    <h1 class="text-center">My Reviews</h1>
+    <div class="row justify-content-center">
         {% for review in reviews %}
         <div class="col-md-8 card profile-card mb-4  mt-3 ">
-            <h3>
-                <a href="{% url 'book_detail' review.book.slug %}">{{ review.book.title }}</a>
-            </h3>
             <div class="card-body">
+                <a href="{% url 'book_detail' review.book.slug %}" class="stretched-link"
+                    aria-label="View details for {{ review.book.title }}"></a>
+                <h3>{{ review.book.title }}</h3>
                 <div id="reviewRating{{ review.id }}" rating="{{ review.rating }}" class="mb-2">
                     <p><strong>Rating:</strong>
                         <span class="fa fa-star {% if review.rating > 0 %} checked {% endif %}"></span>

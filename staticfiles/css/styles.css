@@ -73,5 +73,13 @@ h6,
 }
 
 .profile-card {
+  position: relative;
+  cursor: pointer;
   background-color: var(--card-bg);
+}
+
+.profile-card form,
+.profile-card button {
+  position: relative;
+  z-index: 2;
 }

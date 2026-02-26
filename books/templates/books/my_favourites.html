@@ -2,37 +2,45 @@
 {% load static %}
 
 {% block content %}
-<div class="container mt-4">
-    <h1>My Favourites</h1>
-    <div class="row">
+<div class="container mt-4 mb-4">
+    <h1 class="text-center mb-4">My Favourites</h1>
+    <div class="row justify-content-center gx-4 gy-4">
         {% for favourite in favourites %}
-        <div class="col-md-8 card profile-card mb-4  mt-3 ">
-            <h3>
-                <a href="{% url 'book_detail' favourite.book.slug %}">{{ favourite.book.title }}</a>
-            </h3>
-            <div class="card-body">
-                <p><strong>Author:</strong> {{ favourite.book.author }}</p>
-                <p><strong>Genres:</strong> {{ favourite.book.genre.all|join:", " }}</p>
-                <p><strong>Average Rating:</strong>
-                    <span class="fa fa-star {% if favourite.book.average_rating > 0 %} checked {% endif %}"></span>
-                    <span class="fa fa-star {% if favourite.book.average_rating > 1 %} checked {% endif %}"></span>
-                    <span class="fa fa-star {% if favourite.book.average_rating > 2 %} checked {% endif %}"></span>
-                    <span class="fa fa-star {% if favourite.book.average_rating > 3 %} checked {% endif %}"></span>
-                    <span class="fa fa-star {% if favourite.book.average_rating > 4 %} checked {% endif %}"></span>
-                </p>
-                <p><strong>Publication Date:</strong> {{ favourite.book.publication_date }}</p>
-                <form id="favouriteForm{{ favourite.id }}" method="post" action="{% url 'my_favourites' %}">
-                    {% csrf_token %}
-                    {% if user.is_authenticated %}
-                    {% if favourite.user == user %}
-                    <input type="hidden" name="favourite_id" value="{{ favourite.id }}">
-                    <button type="button" class="btn btn-danger btn-remove-favourite" data-bs-toggle="modal"
-                        data-bs-target="#removeFavouriteModal" data-form-id="favouriteForm{{ favourite.id }}">
-                        Remove from Favourites
-                    </button>
+        <div class="col-md-6">
+            <div class="card profile-card h-100">
+                <div class="card-body">
+                    <a href="{% url 'book_detail' favourite.book.slug %}" class="stretched-link"
+                        aria-label="View details for {{ favourite.book.title }}"></a>
+                    <h3>{{ favourite.book.title }}</h3>
+                    <p><strong>Author:</strong> {{ favourite.book.author }}</p>
+                    {% if favourite.book.genre.all %}
+                    <div class="mb-3">
+                        {% for genre in favourite.book.genre.all %}
+                        <span class="badge genre-badge bg-secondary me-1">{{ genre.name }}</span>
+                        {% endfor %}
+                    </div>
                     {% endif %}
-                    {% endif %}
-                </form>
+                    <p><strong>Average Rating:</strong>
+                        <span class="fa fa-star {% if favourite.book.average_rating > 0 %} checked {% endif %}"></span>
+                        <span class="fa fa-star {% if favourite.book.average_rating > 1 %} checked {% endif %}"></span>
+                        <span class="fa fa-star {% if favourite.book.average_rating > 2 %} checked {% endif %}"></span>
+                        <span class="fa fa-star {% if favourite.book.average_rating > 3 %} checked {% endif %}"></span>
+                        <span class="fa fa-star {% if favourite.book.average_rating > 4 %} checked {% endif %}"></span>
+                    </p>
+                    <p><strong>Publication Date:</strong> {{ favourite.book.publication_date }}</p>
+                    <form id="favouriteForm{{ favourite.id }}" method="post" action="{% url 'my_favourites' %}">
+                        {% csrf_token %}
+                        {% if user.is_authenticated %}
+                        {% if favourite.user == user %}
+                        <input type="hidden" name="favourite_id" value="{{ favourite.id }}">
+                        <button type="button" class="btn btn-danger btn-remove-favourite" data-bs-toggle="modal"
+                            data-bs-target="#removeFavouriteModal" data-form-id="favouriteForm{{ favourite.id }}">
+                            Remove from Favourites
+                        </button>
+                        {% endif %}
+                        {% endif %}
+                    </form>
+                </div>
             </div>
         </div>
         {% empty %}
