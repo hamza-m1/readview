@@ -11,7 +11,7 @@ from .forms import ReviewForm, RequestBookForm
 
 def book_list(request):
     """
-    returns all published books in :model: 'books.Book' and displays them in a 
+    returns all published books in :model: 'books.Book' and displays them in a
     page of 6 books.
 
     **Context**
@@ -32,7 +32,10 @@ def book_list(request):
     if request.method == 'POST' and 'search_query' in request.POST:
         search_query = request.POST.get('search_query', '').strip()
         selected_search_query = search_query
-        books = books.filter(title__icontains=search_query) | books.filter(author__icontains=search_query)
+        books = (
+            books.filter(title__icontains=search_query)
+            | books.filter(author__icontains=search_query)
+        )
     elif request.method == 'POST' and 'genre_filter' in request.POST:
         genre_filter = request.POST.get('genre_filter', '')
         selected_genre = genre_filter
@@ -85,7 +88,11 @@ def book_detail(request, slug):
 
     if request.method == 'POST':
         if not request.user.is_authenticated:
-            messages.add_message(request, messages.ERROR, 'Please log in to leave a review.')
+            messages.add_message(
+                request,
+                messages.ERROR,
+                'Please log in to leave a review.'
+            )
         elif 'rating' in request.POST:
             review_form = ReviewForm(
                 data=request.POST, user=request.user, book=book)
@@ -117,15 +124,30 @@ def book_detail(request, slug):
                 )
         elif 'favourite' in request.POST:
             if not request.user.is_authenticated:
-                messages.add_message(request, messages.ERROR, 'Please log in to manage favourites.')
+                messages.add_message(
+                    request,
+                    messages.ERROR,
+                    'Please log in to manage favourites.'
+                )
             else:
                 if is_favourited:
-                    Favourite.objects.filter(user=request.user, book=book).delete()
-                    messages.add_message(request, messages.SUCCESS, 'Book removed from favourites.')
+                    Favourite.objects.filter(
+                        user=request.user,
+                        book=book
+                    ).delete()
+                    messages.add_message(
+                        request,
+                        messages.SUCCESS,
+                        'Book removed from favourites.'
+                    )
                     is_favourited = False
                 else:
                     Favourite.objects.create(user=request.user, book=book)
-                    messages.add_message(request, messages.SUCCESS, 'Book added to favourites.')
+                    messages.add_message(
+                        request,
+                        messages.SUCCESS,
+                        'Book added to favourites.'
+                    )
                     is_favourited = True
 
     average_rating = book.average_rating()
@@ -148,7 +170,8 @@ def review_edit(request, slug, review_id):
     **Context**
 
     ``review``
-        A single review object from :model: 'books.Review' that matches the review_id.
+        A single review object from :model: 'books.Review' that matches
+        the review_id.
 
     **Template**
 
@@ -187,7 +210,8 @@ def review_delete(request, slug, review_id):
     **Context**
 
     ``review``
-        A single review object from :model: 'books.Review' that matches the review_id.
+        A single review object from :model: 'books.Review' that matches
+        the review_id.
 
     **Template**
 
@@ -195,14 +219,22 @@ def review_delete(request, slug, review_id):
     """
 
     queryset = Book.objects.filter(status=1)
-    book = get_object_or_404(queryset, slug=slug)
+    get_object_or_404(queryset, slug=slug)
     review = get_object_or_404(Review, pk=review_id)
 
     if review.reviewer == request.user:
         review.delete()
-        messages.add_message(request, messages.SUCCESS, 'Review deleted. Thanks for contributing.')
+        messages.add_message(
+            request,
+            messages.SUCCESS,
+            'Review deleted. Thanks for contributing.'
+        )
     else:
-        messages.add_message(request, messages.ERROR, 'You can only delete your own reviews!')
+        messages.add_message(
+            request,
+            messages.ERROR,
+            'You can only delete your own reviews!'
+        )
 
     return HttpResponseRedirect(reverse('book_detail', args=[slug]))
 
@@ -259,7 +291,9 @@ def user_reviews(request):
     :template:`books/my_reviews.html`
     """
 
-    reviews = Review.objects.filter(reviewer=request.user).order_by('-posted_on')
+    reviews = Review.objects.filter(
+        reviewer=request.user
+    ).order_by('-posted_on')
 
     paginator = Paginator(reviews, 6)
     page_number = request.GET.get("page")
@@ -286,13 +320,23 @@ def user_favourites(request):
     :template:`books/my_favourites.html`
     """
 
-    favourites = Favourite.objects.filter(user=request.user).order_by('book__title')
+    favourites = Favourite.objects.filter(
+        user=request.user
+    ).order_by('book__title')
 
     if request.method == 'POST' and 'favourite_id' in request.POST:
         favourite_id = request.POST['favourite_id']
-        favourite = get_object_or_404(Favourite, id=favourite_id, user=request.user)
+        favourite = get_object_or_404(
+            Favourite,
+            id=favourite_id,
+            user=request.user
+        )
         favourite.delete()
-        messages.add_message(request, messages.SUCCESS, 'Book removed from favourites.')
+        messages.add_message(
+            request,
+            messages.SUCCESS,
+            'Book removed from favourites.'
+        )
 
     paginator = Paginator(favourites, 6)
     page_number = request.GET.get("page")
