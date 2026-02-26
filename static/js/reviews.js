@@ -1,11 +1,11 @@
-const editButtons = document.getElementsByClassName("btn-edit");
+const editButtons = document.getElementsByClassName("edit-btn");
 const reviewText = document.getElementById("id_content");
 const reviewForm = document.getElementById("reviewForm");
 const submitButton = document.getElementById("submitButton");
 const reviewRating = document.getElementById("id_rating");
 
 const deleteModal = new bootstrap.Modal(document.getElementById("deleteModal"));
-const deleteButtons = document.getElementsByClassName("btn-delete");
+const deleteButtons = document.getElementsByClassName("delete-btn");
 const deleteConfirm = document.getElementById("deleteConfirm");
 
 for (let button of editButtons) {

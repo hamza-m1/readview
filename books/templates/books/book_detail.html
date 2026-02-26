@@ -102,10 +102,10 @@
                         </p>
                         {% endif %}
                         {% if user.is_authenticated and review.reviewer == user %}
-                        <button class="btn btn-danger" review_id="{{ review.id }}">
+                        <button class="btn btn-danger delete-btn" review_id="{{ review.id }}" type="button">
                             Delete
                         </button>
-                        <button class="btn btn-warning" review_id="{{ review.id }}">
+                        <button class="btn btn-warning edit-btn" review_id="{{ review.id }}" type="button">
                             Edit
                         </button>
                         {% endif %}
