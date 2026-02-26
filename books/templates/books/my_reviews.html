@@ -11,6 +11,7 @@
                 <a href="{% url 'book_detail' review.book.slug %}" class="stretched-link"
                     aria-label="View details for {{ review.book.title }}"></a>
                 <h3>{{ review.book.title }}</h3>
+                <p><strong>Author:</strong> {{ review.book.author }}</p>
                 <div id="reviewRating{{ review.id }}" rating="{{ review.rating }}" class="mb-2">
                     <p><strong>Rating:</strong>
                         <span class="fa fa-star {% if review.rating > 0 %} checked {% endif %}"></span>
