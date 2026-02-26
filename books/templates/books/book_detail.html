@@ -78,7 +78,7 @@
                     <div class="p-2 comments
           {% if not review.approved and review.reviewer == user %}
           faded{% elif not review.approved %} d-none{% endif %}">
-                        <div id="reviewRating{{ review.id }}" rating="{{ review.rating }}" class="mb-2">
+                        <div id="reviewRating{{ review.id }}" data-rating="{{ review.rating }}" class="mb-2">
                             <p><strong>Rating:</strong>
                                 <span class="fa fa-star {% if review.rating > 0 %} checked {% endif %}"></span>
                                 <span class="fa fa-star {% if review.rating > 1 %} checked {% endif %}"></span>

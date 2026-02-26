@@ -17,7 +17,7 @@ for (let button of editButtons) {
     reviewText.value = reviewContent;
     let reviewRatingNum = document
       .getElementById(`reviewRating${reviewId}`)
-      .getAttribute("rating");
+      .getAttribute("data-rating");
     reviewRating.value = reviewRatingNum;
     submitButton.innerText = "Update";
     reviewForm.setAttribute("action", `edit_review/${reviewId}`);
