@@ -102,10 +102,10 @@
                         </p>
                         {% endif %}
                         {% if user.is_authenticated and review.reviewer == user %}
-                        <button class="btn btn-delete" review_id="{{ review.id }}">
+                        <button class="btn btn-danger" review_id="{{ review.id }}">
                             Delete
                         </button>
-                        <button class="btn btn-edit" review_id="{{ review.id }}">
+                        <button class="btn btn-warning" review_id="{{ review.id }}">
                             Edit
                         </button>
                         {% endif %}
@@ -122,7 +122,7 @@
                     <form id="reviewForm" method="post" style="margin-top: 1.3em;">
                         {{ review_form | crispy }}
                         {% csrf_token %}
-                        <button id="submitButton" type="submit" class="btn btn-signup btn-lg">Submit</button>
+                        <button id="submitButton" type="submit" class="btn btn-primary">Submit</button>
                     </form>
                     {% else %}
                     <p>Log in to leave a review</p>
