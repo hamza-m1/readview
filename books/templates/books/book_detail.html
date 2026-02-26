@@ -29,13 +29,13 @@
             {% endif %}
             <p class="mb-0"><strong>Author:</strong> {{ book.author }}</p>
             <p class="mb-0"><strong>Publication Date:</strong> {{ book.publication_date }}</p>
-            <h5 class="card-title mb-0">Avg rating:
+            <h2 class="card-title mb-0 h5">Avg rating:
                 <span class="fa fa-star {% if average_rating > 0 %} checked {% endif %}"></span>
                 <span class="fa fa-star {% if average_rating > 1 %} checked {% endif %}"></span>
                 <span class="fa fa-star {% if average_rating > 2 %} checked {% endif %}"></span>
                 <span class="fa fa-star {% if average_rating > 3 %} checked {% endif %}"></span>
                 <span class="fa fa-star {% if average_rating > 4 %} checked {% endif %}"></span>
-            </h5>
+            </h2>
             <!-- Add to Favourites button -->
             {% if user.is_authenticated %}
             {% if is_favourited %}
@@ -56,7 +56,7 @@
             <button type="button" class="btn btn-secondary disabled">Login to add to Favourites</button>
             {% endif %}
             <p class="mb-0"><strong>Summary:</strong></p>
-            <p">{{ book.summary | safe }}</p>
+            <div>{{ book.summary | safe }}</div>
         </div>
         <!-- Displaying count of reviews -->
         <div class="row">
@@ -87,9 +87,9 @@
                                 <span class="fa fa-star {% if review.rating > 4 %} checked {% endif %}"></span>
                             </p>
                         </div>
-                        <p id="reviewContent{{ review.id }}">
+                        <div id="reviewContent{{ review.id }}">
                             {{ review.content | safe }}
-                        </p>
+                        </div>
                         <p class="font-weight-bold fst-italic">
                             By {{ review.reviewer }} on
                             <span class="font-weight-normal">
@@ -134,11 +134,12 @@
 
     <!-- Delete review confirmation modal -->
     {% if user.is_authenticated %}
-    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-modal="true"
+        aria-labelledby="deleteModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="deleteModalLabel">Delete review?</h5>
+                    <h4 class="modal-title" id="deleteModalLabel">Delete review?</h4>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -155,12 +156,12 @@
     {% endif %}
     <!-- Remove Favourite confirmation Modal -->
     {% if user.is_authenticated and is_favourited %}
-    <div class="modal fade" id="removeFavouriteModal" tabindex="-1" aria-labelledby="removeFavouriteModalLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="removeFavouriteModal" tabindex="-1" role="dialog" aria-modal="true"
+        aria-labelledby="removeFavouriteModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="removeFavouriteModalLabel">Remove from favourites?</h5>
+                    <h4 class="modal-title" id="removeFavouriteModalLabel">Remove from favourites?</h4>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -173,10 +174,11 @@
             </div>
         </div>
     </div>
-    {% endif %}
+</div>
+{% endif %}
 
-    {% endblock %}
+{% endblock %}
 
-    {% block extras %}
-    <script src="{% static 'js/reviews.js' %}"></script>
-    {% endblock %}
+{% block extras %}
+<script src="{% static 'js/reviews.js' %}"></script>
+{% endblock %}
