@@ -3,7 +3,11 @@
 
 {% block content %}
 <div class="container mt-4">
-    <h1>{{ about.title }}</h1>
-    <p>{{ about.content | safe }}</p>
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <h1>{{ about.title }}</h1>
+            <p>{{ about.content | safe }}</p>
+        </div>
+    </div>
 </div>
 {% endblock %}
