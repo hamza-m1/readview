@@ -4,16 +4,21 @@
 
 {% block content %}
 <div class="container mt-4">
-    <h1>Request a Book</h1>
-    {% if user.is_authenticated %}
-    <p>If you would like to see a book added to our collection, please fill out the form below to request it.</p>
-    <form method="post" action="{% url 'request_book' %}">
-        {% csrf_token %}
-        {{ form|crispy }}
-        <button type="submit" class="btn btn-primary">Submit Request</button>
-    </form>
-    {% else %}
-    <p>Log in to request a book</p>
-    {% endif %}
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <h1 class="text-center mb-4">Request a Book</h1>
+            {% if user.is_authenticated %}
+            <p>If you would like to see a book added to our collection, please fill out the form below to request it.
+            </p>
+            <form method="post" action="{% url 'request_book' %}">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <button type="submit" class="btn btn-primary">Submit Request</button>
+            </form>
+            {% else %}
+            <p>Log in to request a book</p>
+            {% endif %}
+        </div>
+    </div>
 </div>
 {% endblock %}
