@@ -11,7 +11,7 @@
                 <div class="card-body">
                     <a href="{% url 'book_detail' favourite.book.slug %}" class="stretched-link"
                         aria-label="View details for {{ favourite.book.title }}"></a>
-                    <h3>{{ favourite.book.title }}</h3>
+                    <h2 class="h3">{{ favourite.book.title }}</h2>
                     <p><strong>Author:</strong> {{ favourite.book.author }}</p>
                     {% if favourite.book.genre.all %}
                     <div class="mb-3">
@@ -75,12 +75,12 @@
     {% endif %}
 </div>
 
-<div class="modal fade" id="removeFavouriteModal" tabindex="-1" aria-labelledby="removeFavouriteModalLabel"
-    aria-hidden="true">
+<div class="modal fade" id="removeFavouriteModal" tabindex="-1" role="dialog" aria-modal="true"
+    aria-labelledby="removeFavouriteModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="removeFavouriteModalLabel">Remove from favourites?</h5>
+                <h3 class="modal-title h5" id="removeFavouriteModalLabel">Remove from favourites?</h3>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
