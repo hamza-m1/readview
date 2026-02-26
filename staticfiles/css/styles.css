@@ -64,10 +64,21 @@ h6,
 }
 
 .genre-badge {
+  position: relative;
+  z-index: 2;
+  display: inline-block;
   font-size: 1rem;
   padding: 0.5em 0.75em;
   background-color: var(--light-blue);
   color: black;
+  transition:
+    box-shadow 0.2s ease-in-out,
+    transform 0.2s ease-in-out;
+}
+
+.genre-badge:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0.35rem 0.75rem rgba(0, 0, 0, 0.18);
 }
 
 .review-card {
@@ -78,6 +89,14 @@ h6,
   position: relative;
   cursor: pointer;
   background-color: var(--card-bg);
+  transition:
+    box-shadow 0.2s ease-in-out,
+    transform 0.2s ease-in-out;
+}
+
+.profile-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0.75rem 1rem rgba(0, 0, 0, 0.2);
 }
 
 .profile-card form,
