@@ -56,19 +56,10 @@
                     <img class="card-img-top" src=" {{ book.cover_image.url }}" alt="{{ book.title }}">
                     {% endif %}
                 </div>
-                <div class="card-body d-flex flex-column">
+                <div class="card-body d-flex flex-column pb-0">
                     <a href="{% url 'book_detail' book.slug %}" class="stretched-link"
                         aria-label="View details for {{ book.title }}"></a>
                     <h5 class="card-title">{{ book.title }}</h5>
-                    <p class="card-text">By: {{ book.author }}</p>
-                    <p class="card-title">Avg rating:
-                        <span class="fa fa-star {% if book.average_rating > 0 %} checked {% endif %}"></span>
-                        <span class="fa fa-star {% if book.average_rating > 1 %} checked {% endif %}"></span>
-                        <span class="fa fa-star {% if book.average_rating > 2 %} checked {% endif %}"></span>
-                        <span class="fa fa-star {% if book.average_rating > 3 %} checked {% endif %}"></span>
-                        <span class="fa fa-star {% if book.average_rating > 4 %} checked {% endif %}"></span>
-                    </p>
-                    <p class="card-text">Published: {{ book.publication_date }}</p>
                     {% if book.genre.all %}
                     <div class="mb-2">
                         {% for genre in book.genre.all %}
@@ -81,7 +72,16 @@
                         {% endfor %}
                     </div>
                     {% endif %}
-                    <p class="card-text">{{ book.summary | truncatewords:40 | safe }}</p>
+                    <p class="card-text mb-2"><strong>By:</strong> {{ book.author }}</p>
+                    <p class="card-title"><strong>Avg rating:</strong>
+                        <span class="fa fa-star {% if book.average_rating > 0 %} checked {% endif %}"></span>
+                        <span class="fa fa-star {% if book.average_rating > 1 %} checked {% endif %}"></span>
+                        <span class="fa fa-star {% if book.average_rating > 2 %} checked {% endif %}"></span>
+                        <span class="fa fa-star {% if book.average_rating > 3 %} checked {% endif %}"></span>
+                        <span class="fa fa-star {% if book.average_rating > 4 %} checked {% endif %}"></span>
+                    </p>
+                    <p class="card-text"><strong>Published:</strong> {{ book.publication_date }}</p>
+                    <p class="card-text mb-0">{{ book.summary | truncatewords:40 | safe }}</p>
                 </div>
             </div>
         </div>
