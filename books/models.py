@@ -14,7 +14,9 @@ class Book(models.Model):
     genre = models.ManyToManyField('Genre', related_name='books')
     cover_image = CloudinaryField('image', default='placeholder')
     publication_date = models.DateField(blank=True, null=True)
-    length = models.PositiveIntegerField(help_text="Length in pages", blank=True, null=True)
+    length = models.PositiveIntegerField(
+        help_text="Length in pages", blank=True, null=True
+    )
     isbn = models.CharField(max_length=13, unique=True, blank=True, null=True)
     summary = models.TextField(blank=True, null=True)
     posted_on = models.DateTimeField(auto_now_add=True)
@@ -38,7 +40,9 @@ class Book(models.Model):
     def average_rating(self):
         approved_reviews = self.reviews.filter(approved=True)
         if approved_reviews.exists():
-            return approved_reviews.aggregate(models.Avg('rating'))['rating__avg']
+            return approved_reviews.aggregate(
+                models.Avg('rating')
+            )['rating__avg']
         return None
 
 
@@ -52,8 +56,12 @@ class Genre(models.Model):
 
 
 class Review(models.Model):
-    book = models.ForeignKey(Book, on_delete=models.CASCADE, related_name='reviews')
-    reviewer = models.ForeignKey(User, on_delete=models.CASCADE, related_name='reviews')
+    book = models.ForeignKey(
+        Book, on_delete=models.CASCADE, related_name='reviews'
+    )
+    reviewer = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name='reviews'
+    )
     rating = models.IntegerField()
     content = models.TextField()
     posted_on = models.DateTimeField(auto_now_add=True)
@@ -68,8 +76,12 @@ class Review(models.Model):
 
 
 class Favourite(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='favourites')
-    book = models.ForeignKey(Book, on_delete=models.CASCADE, related_name='favourited_by')
+    user = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name='favourites'
+    )
+    book = models.ForeignKey(
+        Book, on_delete=models.CASCADE, related_name='favourited_by'
+    )
 
     class Meta:
         unique_together = ('user', 'book')
