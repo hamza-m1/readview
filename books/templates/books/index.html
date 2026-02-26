@@ -6,7 +6,7 @@
     <div class="row gx-0">
         <!-- search bar -->
         <div class="col-md-6">
-            <div class="card border-0">
+            <div class="card border-0 bg-transparent">
                 <div class="card-body pb-0 pr-md-0">
                     <form method="POST" action="{% url 'home' %}" class="d-flex align-items-center">
                         {% csrf_token %}
@@ -18,7 +18,7 @@
         </div>
         <!-- search by genre -->
         <div class="col-md-6">
-            <div class="card border-0">
+            <div class="card border-0 bg-transparent">
                 <div class="card-body">
                     <form method="POST" action="{% url 'home' %}" class="d-flex align-items-center">
                         {% csrf_token %}
