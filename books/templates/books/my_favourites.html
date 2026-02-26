@@ -2,10 +2,10 @@
 {% load static %}
 
 {% block content %}
-<div class="container mt-4 mb-4">
+<div class="container mt-4 mb-4 favourites-page">
     <h1 class="text-center mb-4">My Favourites</h1>
     <div class="row justify-content-center gx-4 gy-4">
-        {% for favourite in favourites %}
+        {% for favourite in page_obj %}
         <div class="col-md-6">
             <div class="card profile-card h-100">
                 <div class="card-body">
@@ -47,6 +47,32 @@
         <p>You have not added any books to your favourites yet.</p>
         {% endfor %}
     </div>
+    {% if page_obj.paginator.num_pages > 1 %}
+    <div class="pagination d-flex justify-content-center align-items-center gap-2 mt-auto pt-4">
+        {% if page_obj.has_previous %}
+        <a href="?page=1" class="btn btn-outline-primary btn-sm" aria-label="First page">&laquo;</a>
+        <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-outline-primary btn-sm"
+            aria-label="Previous page">&lt;</a>
+        {% else %}
+        <span class="btn btn-outline-secondary btn-sm disabled" aria-disabled="true">&laquo;</span>
+        <span class="btn btn-outline-secondary btn-sm disabled" aria-disabled="true">&lt;</span>
+        {% endif %}
+
+        <span class="current fw-semibold">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+        </span>
+
+        {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}" class="btn btn-outline-primary btn-sm"
+            aria-label="Next page">&gt;</a>
+        <a href="?page={{ page_obj.paginator.num_pages }}" class="btn btn-outline-primary btn-sm"
+            aria-label="Last page">&raquo;</a>
+        {% else %}
+        <span class="btn btn-outline-secondary btn-sm disabled" aria-disabled="true">&gt;</span>
+        <span class="btn btn-outline-secondary btn-sm disabled" aria-disabled="true">&raquo;</span>
+        {% endif %}
+    </div>
+    {% endif %}
 </div>
 
 <div class="modal fade" id="removeFavouriteModal" tabindex="-1" aria-labelledby="removeFavouriteModalLabel"

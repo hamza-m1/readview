@@ -261,8 +261,13 @@ def user_reviews(request):
 
     reviews = Review.objects.filter(reviewer=request.user).order_by('-posted_on')
 
+    paginator = Paginator(reviews, 6)
+    page_number = request.GET.get("page")
+    page_obj = paginator.get_page(page_number)
+
     context = {
         'reviews': reviews,
+        'page_obj': page_obj,
     }
     return render(request, 'books/my_reviews.html', context)
 
@@ -289,7 +294,12 @@ def user_favourites(request):
         favourite.delete()
         messages.add_message(request, messages.SUCCESS, 'Book removed from favourites.')
 
+    paginator = Paginator(favourites, 6)
+    page_number = request.GET.get("page")
+    page_obj = paginator.get_page(page_number)
+
     context = {
         'favourites': favourites,
+        'page_obj': page_obj,
     }
     return render(request, 'books/my_favourites.html', context)
