@@ -5,6 +5,10 @@
   --card-bg: rgb(255, 255, 255);
 }
 
+/* =========================
+   Base Layout
+   ========================= */
+
 body {
   font-family: "Manrope", sans-serif;
   min-height: 100vh;
@@ -43,9 +47,9 @@ main {
   flex-direction: column;
 }
 
-.dark-bg {
-  background-color: var(--dark-brown);
-}
+/* =========================
+   Typography
+   ========================= */
 
 h1,
 h2,
@@ -61,6 +65,14 @@ h6,
   font-weight: 500;
 }
 
+/* =========================
+   Utility Classes
+   ========================= */
+
+.dark-bg {
+  background-color: var(--dark-brown);
+}
+
 .faded {
   color: rgb(177, 177, 177);
 }
@@ -68,6 +80,10 @@ h6,
 .checked {
   color: orange;
 }
+
+/* =========================
+   Book Components
+   ========================= */
 
 .book-card {
   position: relative;
@@ -110,6 +126,10 @@ h6,
 .review-card {
   background-color: var(--background);
 }
+
+/* =========================
+   Profile Components
+   ========================= */
 
 .profile-card {
   position: relative;
