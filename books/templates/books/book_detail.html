@@ -71,7 +71,7 @@
         </div>
         <!-- Displaying reviews -->
         <div class="row">
-            <div class="col-md-8 card mb-4  mt-3 ">
+            <div class="col-md-8 card review-card mb-4 mt-3">
                 <h3>Reviews:</h3>
                 <div class="card-body">
                     {% for review in reviews %}
@@ -114,7 +114,7 @@
                 </div>
             </div>
             <!-- Creating New Comments -->
-            <div class="col-md-4 card mb-4 mt-3">
+            <div class="col-md-4 card review-card mb-4 mt-3">
                 <div class="card-body">
                     {% if user.is_authenticated %}
                     <h3>Leave a review:</h3>

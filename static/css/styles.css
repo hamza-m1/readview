@@ -1,8 +1,8 @@
 :root {
-  --background: rgb(245, 245, 245);
+  --background: rgb(254, 254, 254);
   --light-blue: #97bac4;
   --dark-brown: #3c2615;
-  --card-bg: rgb(252, 252, 252);
+  --card-bg: rgb(255, 255, 255);
 }
 
 body {
@@ -66,4 +66,12 @@ h6,
 .genre-badge {
   font-size: 0.85rem;
   padding: 0.4em 0.65em;
+}
+
+.review-card {
+  background-color: var(--background);
+}
+
+.profile-card {
+  background-color: var(--card-bg);
 }

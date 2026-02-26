@@ -6,7 +6,7 @@
     <h1>My Favourites</h1>
     <div class="row">
         {% for favourite in favourites %}
-        <div class="col-md-8 card mb-4  mt-3 ">
+        <div class="col-md-8 card profile-card mb-4  mt-3 ">
             <h3>
                 <a href="{% url 'book_detail' favourite.book.slug %}">{{ favourite.book.title }}</a>
             </h3>

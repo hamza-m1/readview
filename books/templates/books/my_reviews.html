@@ -7,7 +7,7 @@
     <h1>My Reviews</h1>
     <div class="row">
         {% for review in reviews %}
-        <div class="col-md-8 card mb-4  mt-3 ">
+        <div class="col-md-8 card profile-card mb-4  mt-3 ">
             <h3>
                 <a href="{% url 'book_detail' review.book.slug %}">{{ review.book.title }}</a>
             </h3>
