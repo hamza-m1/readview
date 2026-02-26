@@ -12,8 +12,12 @@ class ReviewForm(forms.ModelForm):
         model = Review
         fields = ['rating', 'content']
         widgets = {
-            'content': forms.Textarea(attrs={'rows': 8, 'placeholder': 'Write your review here...'}),
-            'rating': forms.Select(choices=[(i, f"{i} Stars") for i in range(6)]),
+            'content': forms.Textarea(
+                attrs={'rows': 8, 'placeholder': 'Write your review here...'}
+            ),
+            'rating': forms.Select(
+                choices=[(i, f"{i} Stars") for i in range(6)]
+            ),
         }
 
     def clean(self):
@@ -28,7 +32,9 @@ class ReviewForm(forms.ModelForm):
                 existing_review = existing_review.exclude(pk=self.instance.pk)
 
             if existing_review.exists():
-                raise forms.ValidationError("You have already reviewed this book.")
+                raise forms.ValidationError(
+                    "You have already reviewed this book."
+                )
 
         return cleaned_data
 
