@@ -10,7 +10,7 @@
             <div class="card-body">
                 <a href="{% url 'book_detail' review.book.slug %}" class="stretched-link"
                     aria-label="View details for {{ review.book.title }}"></a>
-                <h3>{{ review.book.title }}</h3>
+                <h2 class="h3">{{ review.book.title }}</h2>
                 <p><strong>Author:</strong> {{ review.book.author }}</p>
                 <div id="reviewRating{{ review.id }}" data-rating="{{ review.rating }}" class="mb-2">
                     <p><strong>Rating:</strong>
