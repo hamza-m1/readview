@@ -14,19 +14,10 @@
             <img src="{{ book.cover_image.url }}" alt="{{ book.title }}" class="img-fluid rounded">
             {% endif %}
         </div>
-        <div class="col-md-8">
-            <h1>{{ book.title }}</h1>
-            <p><strong>Author:</strong> {{ book.author }}</p>
-            <p><strong>Publication Date:</strong> {{ book.publication_date }}</p>
-            <h5 class="card-title">Avg rating:
-                <span class="fa fa-star {% if average_rating > 0 %} checked {% endif %}"></span>
-                <span class="fa fa-star {% if average_rating > 1 %} checked {% endif %}"></span>
-                <span class="fa fa-star {% if average_rating > 2 %} checked {% endif %}"></span>
-                <span class="fa fa-star {% if average_rating > 3 %} checked {% endif %}"></span>
-                <span class="fa fa-star {% if average_rating > 4 %} checked {% endif %}"></span>
-            </h5>
+        <div class="col-md-8 d-flex flex-column gap-3">
+            <h1 class="mb-0">{{ book.title }}</h1>
             {% if book.genre.all %}
-            <div class="mb-2">
+            <div class="mb-0">
                 {% for genre in book.genre.all %}
                 <form method="POST" action="{% url 'home' %}" class="d-inline">
                     {% csrf_token %}
@@ -36,8 +27,15 @@
                 {% endfor %}
             </div>
             {% endif %}
-            <p><strong>Summary:</strong></p>
-            <p>{{ book.summary | safe }}</p>
+            <p class="mb-0"><strong>Author:</strong> {{ book.author }}</p>
+            <p class="mb-0"><strong>Publication Date:</strong> {{ book.publication_date }}</p>
+            <h5 class="card-title mb-0">Avg rating:
+                <span class="fa fa-star {% if average_rating > 0 %} checked {% endif %}"></span>
+                <span class="fa fa-star {% if average_rating > 1 %} checked {% endif %}"></span>
+                <span class="fa fa-star {% if average_rating > 2 %} checked {% endif %}"></span>
+                <span class="fa fa-star {% if average_rating > 3 %} checked {% endif %}"></span>
+                <span class="fa fa-star {% if average_rating > 4 %} checked {% endif %}"></span>
+            </h5>
             <!-- Add to Favourites button -->
             {% if user.is_authenticated %}
             {% if is_favourited %}
@@ -57,6 +55,8 @@
             {% else %}
             <button type="button" class="btn btn-secondary disabled">Login to add to Favourites</button>
             {% endif %}
+            <p class="mb-0"><strong>Summary:</strong></p>
+            <p">{{ book.summary | safe }}</p>
         </div>
         <!-- Displaying count of reviews -->
         <div class="row">
