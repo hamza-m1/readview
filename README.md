@@ -224,8 +224,6 @@ Explain your features on the website,(navigation, pages, links, forms.....)
 
 ## Testing
 
-Important part of your README!!!
-
 ### Google's Lighthouse Performance
 
 Lighthouse testing was performed using google chrome on the deployed Heroku site.
@@ -262,7 +260,14 @@ Pages tested (desktop and mobile):
 
 ### Responsiveness
 
-Screenshots of the responsivness, pick few devices (from 320px top 1200px)
+Responsive testing was completed in Chrome DevTools using representative viewport sizes from mobile to desktop.
+
+- Mobile (320px)
+  - ![Mobile responsiveness screenshot](documentation/testing/responsiveness/mobile-responsive-test.png)
+- Tablet (768px)
+  - ![Tablet responsiveness screenshot](documentation/testing/responsiveness/tablet-responsive-test.png)
+- Desktop (1200px+)
+  - ![Desktop responsiveness screenshot](documentation/testing/responsiveness/desktop-responsive-test.png)
 
 ### Code Validation
 
