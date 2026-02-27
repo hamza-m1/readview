@@ -257,20 +257,105 @@ List of bugs and how did you fix them
 
 ## Deployment
 
-#### Creating Repository on GitHub
+The ReadView application was deployed using [Heroku](https://www.heroku.com/) with a PostgreSQL production database and Cloudinary for media file storage.
 
-- First make sure you are signed into [Github](https://github.com/) and go to the code institutes template, which can be found [here](https://github.com/Code-Institute-Org/gitpod-full-template).
-- Then click on **use this template** and select **Create a new repository** from the drop-down. Enter the name for the repository and click **Create repository from template**.
-- Once the repository was created, I clicked the green **gitpod** button to create a workspace in gitpod so that I could write the code for the site.
+### Repository Setup
 
-#### Deloying on Github
+#### Forking the Repository
 
-The site was deployed to Github Pages using the following method:
+To create your own copy of this project:
 
-- Go to the Github repository.
-- Navigate to the 'settings' tab.
-- Using the 'select branch' dropdown menu, choose 'main'.
-- Click 'save'.
+- Navigate to the GitHub repository.
+- Click the **Fork** button located in the top-right corner.
+- GitHub will create a copy of the repository under your account.
+
+#### Cloning the Repository
+
+To clone the project locally:
+
+- Click the **Code** button on the repository page.
+- Copy the HTTPS or SSH URL.
+- Open your terminal and run:
+  - `git clone <repository-url>`
+- Navigate into the project directory:
+  - `cd readview`
+
+#### Creating a New GitHub Repository
+
+If starting from scratch:
+
+- Log into your GitHub account.
+- Click **New Repository**.
+- Enter a repository name (e.g., `readview`).
+- Click **Create Repository**.
+- Begin development.
+
+### Preparing the Application for Deployment
+
+Before deploying to Heroku, the following production configurations were completed:
+
+- Created an `env.py` file to securely store environment variables.
+- Added `env.py` to `.gitignore`.
+- Set `DEBUG = False` for production.
+- Added the Heroku domain to `ALLOWED_HOSTS`.
+- Installed required production packages:
+  - `gunicorn`
+  - `dj-database-url`
+  - `psycopg2-binary`
+  - `whitenoise`
+- Configured static files using WhiteNoise.
+- Configured media file storage using Cloudinary.
+- Created a `Procfile` containing:
+  - `web: gunicorn readview.wsgi`
+- Ran the following command before deployment:
+  - `python3 manage.py collectstatic`
+
+### Heroku Deployment
+
+#### Create a Heroku Application
+
+- Log into your Heroku account.
+- Click **New** → **Create New App**.
+- Enter a unique app name.
+- Select your region.
+- Click **Create App**.
+
+#### Configure Environment Variables
+
+In the Heroku dashboard:
+
+- Go to **Settings** → **Config Vars**.
+- Add the following variables:
+  - `SECRET_KEY`
+  - `DATABASE_URL`
+  - `CLOUDINARY_URL`
+  - `DISABLE_COLLECTSTATIC` (if required)
+- These values must match those stored locally in `env.py`.
+
+#### Connect Heroku to GitHub
+
+- Navigate to the **Deploy** tab.
+- Select **GitHub** as the deployment method.
+- Connect your GitHub account.
+- Search for your repository.
+- Select the `main` branch.
+- Enable **Automatic Deploys** or use **Manual Deploy**.
+
+#### Deploy the Application
+
+- Click **Deploy Branch**.
+- Wait for the build process to complete.
+- Click **View App** once deployment is successful.
+
+### Post-Deployment Checks
+
+After deployment, verify that:
+
+- Static files load correctly.
+- Media files upload successfully to Cloudinary.
+- PostgreSQL database is connected.
+- User authentication and authorization work properly.
+- All CRUD functionality operates as expected.
 
 ## Credits
 
