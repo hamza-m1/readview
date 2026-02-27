@@ -280,7 +280,32 @@ Responsive testing was completed in Chrome DevTools using representative viewpor
 
 ### Code Validation
 
-Validate your code HTML, CSS (all pages/files need to be validated!!!), display screenshots
+All custom code was validated using the following tools:
+
+- [W3C HTML Validator](https://validator.w3.org/)
+- [W3C CSS Validator](https://jigsaw.w3.org/css-validator/)
+- [JSHint](https://jshint.com/) for custom JavaScript files
+
+#### HTML Validation
+
+All HTML templates were checked using the W3C HTML Validator.
+
+![HTML validation screenshot](documentation/testing/code-validation/html-validation-test.png)
+
+#### CSS Validation
+
+The custom stylesheet was validated using the W3C CSS Validator.
+
+![CSS validation screenshot](documentation/testing/code-validation/css-validation-test.png)
+
+#### JavaScript Validation (JSHint)
+
+Custom JavaScript files were tested with JSHint:
+
+- `static/js/reviews.js`
+- `static/js/my-favourites.js`
+
+No major issues were identified in the final JavaScript code.
 
 ### Manual Testing user stories or/and features
 
