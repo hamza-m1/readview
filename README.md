@@ -177,11 +177,50 @@ Explain your features on the website,(navigation, pages, links, forms.....)
 
 ## Technologies Used
 
-List of technologies used for your project...
-HTML
-CSS
-Bootstrap
-Github
+### Languages
+
+- HTML5
+- CSS3
+- JavaScript
+- Python
+
+### Frameworks & Libraries
+
+- [Django 4.2](https://www.djangoproject.com/) - backend web framework.
+- [Bootstrap 5](https://getbootstrap.com/) - responsive layout and UI components.
+- [Django Allauth](https://django-allauth.readthedocs.io/) - authentication and account management.
+- [Django Crispy Forms](https://django-crispy-forms.readthedocs.io/) with [Crispy Bootstrap 5](https://pypi.org/project/crispy-bootstrap5/) - form rendering and styling.
+- [Django Summernote](https://github.com/summernote/django-summernote) - rich-text editing in the admin/content workflow.
+
+### Database & Data Storage
+
+- SQLite - local development database.
+- PostgreSQL (via `dj-database-url` and `psycopg2-binary`) - production database configuration.
+
+### Media, Static Files & Deployment
+
+- [Cloudinary](https://cloudinary.com/) and `dj3-cloudinary-storage` - cloud image/media storage.
+- [WhiteNoise](https://whitenoise.readthedocs.io/) - serving static files in production.
+- [Gunicorn](https://gunicorn.org/) - WSGI application server.
+- [Heroku](https://www.heroku.com/) - deployment platform.
+
+### Version Control & Project Management
+
+- Git - version control.
+- GitHub - repository hosting and collaboration.
+- GitHub Projects (Kanban board) - Agile planning and task tracking.
+
+### Design & Documentation
+
+- [Figma](https://www.figma.com/) - wireframes.
+
+### Testing & Validation Tools
+
+- Chrome DevTools - debugging, responsive testing and performance inspection.
+- Lighthouse - accessibility, best-practice and performance auditing.
+- [Code Institute Python Linter](https://pep8ci.herokuapp.com/) - Python code validation.
+- [JSHint](https://jshint.com/) - JavaScript code validation.
+- [W3C CSS Validator](https://jigsaw.w3.org/css-validator/) - CSS code validation.
 
 ## Testing
 
