@@ -97,6 +97,24 @@ Wireframes were created in [Figma](https://www.figma.com/).
 
 </details>
 
+#### Desktop Wireframes
+
+<details>
+<summary>Click here to see the Desktop Wireframes</summary>
+
+- Home page | Book detail page
+  - ![screenshot](documentation/wireframes/desktop-wireframes-1.png)
+- Request a book page | About page
+  - ![screenshot](documentation/wireframes/desktop-wireframes-2.png)
+- My favourites page | My reviews page
+  - ![screenshot](documentation/wireframes/desktop-wireframes-3.png)
+- Sign in page | Sign out page
+  - ![screenshot](documentation/wireframes/desktop-wireframes-4.png)
+- Register an account page
+  - ![screenshot](documentation/wireframes/desktop-wireframes-5.png)
+
+</details>
+
 ### Typography
 
 Explain font you've used for your project
