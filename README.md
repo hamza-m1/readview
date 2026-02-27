@@ -232,7 +232,7 @@ Screenshots of certain pages and scores (mobile and desktop)
 
 ### Browser Compatibility
 
-Check compatability with different browsers
+![browser compatibility screenshot](documentation/testing/browser-compatibility.png)
 
 ### Responsiveness
 
