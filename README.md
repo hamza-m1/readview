@@ -254,6 +254,15 @@ Pages tested (desktop and mobile):
   - ![My favourites page lighthouse test score for desktop screenshot](documentation/testing/lighthouse-test/my-favourites-desktop.png)
   - ![My favourites page lighthouse test score for mobile screenshot](documentation/testing/lighthouse-test/my-favourites-mobile.png)
 
+The Lighthouse performance scores are slightly lower on some pages due to image loading costs.
+
+- **First Contentful Paint (FCP):** 1.3s
+- **Largest Contentful Paint (LCP):** 1.7s
+
+The main reason for this is the relatively large file sizes of some book cover images, which are often the largest visual elements on the page and directly affect LCP.
+
+In future iterations, performance can be improved by optimising and compressing cover images before upload, serving next-generation formats such as WebP/AVIF, generating multiple responsive image sizes, and implementing lazy loading for off-screen images.
+
 ### Browser Compatibility
 
 ![browser compatibility screenshot](documentation/testing/browser-compatibility.png)
