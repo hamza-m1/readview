@@ -117,11 +117,23 @@ Wireframes were created in [Figma](https://www.figma.com/).
 
 ### Typography
 
-Explain font you've used for your project
+The project uses a two-font pairing from [Google Fonts](https://fonts.google.com/):
+
+- **Manrope** (sans-serif) is used as the primary body font for paragraphs, form text, buttons and general UI content.
+- **Fraunces** (serif) is used for headings (`h1`–`h6`) and the navbar brand to create a clear visual hierarchy.
+
+This combination was chosen to keep long-form content readable while giving page titles and key labels a distinctive editorial style that fits the book theme of ReadView.
 
 ### Colour Scheme
 
-Screenshoot of the colour scheme for your project
+| Colour                      | Value     | Preview                                                                                                                       | Usage                                                                                            |
+| --------------------------- | --------- | ----------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------ |
+| Background                  | `#fefefe` | <span style="display:inline-block;width:24px;height:24px;background:#fefefe;border:1px solid #ccc;border-radius:4px;"></span> | Main page background for a clean, high-readability layout                                        |
+| Card Background             | `#ffffff` | <span style="display:inline-block;width:24px;height:24px;background:#ffffff;border:1px solid #ccc;border-radius:4px;"></span> | Used on cards to separate content sections subtly                                                |
+| Primary Accent (Light Blue) | `#97bac4` | <span style="display:inline-block;width:24px;height:24px;background:#97bac4;border:1px solid #ccc;border-radius:4px;"></span> | Used for genre badges and highlight elements                                                     |
+| Dark Brown                  | `#3c2615` | <span style="display:inline-block;width:24px;height:24px;background:#3c2615;border:1px solid #ccc;border-radius:4px;"></span> | Used for dark sections such as the navbar/footer background                                      |
+| Rating Highlight            | `#ffa500` | <span style="display:inline-block;width:24px;height:24px;background:#ffa500;border:1px solid #ccc;border-radius:4px;"></span> | Used for checked star ratings to provide clear visual feedback                                   |
+| Faded Text                  | `#b1b1b1` | <span style="display:inline-block;width:24px;height:24px;background:#b1b1b1;border:1px solid #ccc;border-radius:4px;"></span> | Used for faded text to visually de-emphasise secondary information without reducing readability. |
 
 ## Features:
 
