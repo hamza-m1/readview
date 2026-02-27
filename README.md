@@ -5,6 +5,7 @@
    - [Wireframes](#wireframes)
    - [Typography](#typography)
    - [Colour Scheme](#colour-scheme)
+   - [Database Diagram](#database-diagram)
 2. [Features](#features)
    - [Navigation](#Navigation)
    - [Footer](#Footer)
@@ -134,6 +135,10 @@ This combination was chosen to keep long-form content readable while giving page
 | Dark Brown                  | `#3c2615` | ![#3c2615](https://singlecolorimage.com/get/3c2615/24x24) | Used for dark sections such as the navbar/footer background                                      |
 | Rating Highlight            | `#ffa500` | ![#ffa500](https://singlecolorimage.com/get/ffa500/24x24) | Used for checked star ratings to provide clear visual feedback                                   |
 | Faded Text                  | `#b1b1b1` | ![#b1b1b1](https://singlecolorimage.com/get/b1b1b1/24x24) | Used for faded text to visually de-emphasise secondary information without reducing readability. |
+
+### Database Diagram
+
+![ReadView ERD](documentation/erd/erd.png)
 
 ## Features:
 
