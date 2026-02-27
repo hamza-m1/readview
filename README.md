@@ -228,7 +228,33 @@ Important part of your README!!!
 
 ### Google's Lighthouse Performance
 
-Screenshots of certain pages and scores (mobile and desktop)
+Lighthouse testing was performed using google chrome on the deployed Heroku site.
+
+Pages tested (desktop and mobile):
+
+- home
+  - ![Home page lighthouse test score for desktop screenshot](documentation/testing/lighthouse-test/home-desktop.png)
+  - ![Home page lighthouse test score for mobile screenshot](documentation/testing/lighthouse-test/home-mobile.png)
+
+- book detail
+  - ![Book detail page lighthouse test score for desktop screenshot](documentation/testing/lighthouse-test/book-detail-desktop.png)
+  - ![Book detail page lighthouse test score for mobile screenshot](documentation/testing/lighthouse-test/book-detail-mobile.png)
+
+- about
+  - ![About page lighthouse test score for desktop screenshot](documentation/testing/lighthouse-test/about-desktop.png)
+  - ![About page lighthouse test score for mobile screenshot](documentation/testing/lighthouse-test/about-mobile.png)
+
+- request a book
+  - ![Request a book page lighthouse test score for desktop screenshot](documentation/testing/lighthouse-test/request-a-book-desktop.png)
+  - ![Request a book page lighthouse test score for mobile screenshot](documentation/testing/lighthouse-test/request-a-book-mobile.png)
+
+- my reviews
+  - ![My reviews page lighthouse test score for desktop screenshot](documentation/testing/lighthouse-test/my-reviews-desktop.png)
+  - ![My reviews page lighthouse test score for mobile screenshot](documentation/testing/lighthouse-test/my-reviews-mobile.png)
+
+- my favourites
+  - ![My favourites page lighthouse test score for desktop screenshot](documentation/testing/lighthouse-test/my-favourites-desktop.png)
+  - ![My favourites page lighthouse test score for mobile screenshot](documentation/testing/lighthouse-test/my-favourites-mobile.png)
 
 ### Browser Compatibility
 
