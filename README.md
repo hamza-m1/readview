@@ -6,6 +6,8 @@
    - [Typography](#typography)
    - [Colour Scheme](#colour-scheme)
    - [Database Diagram](#database-diagram)
+   - [Agile Methodology](#agile-methodology)
+
 2. [Features](#features)
    - [Navigation](#Navigation)
    - [Footer](#Footer)
@@ -139,6 +141,29 @@ This combination was chosen to keep long-form content readable while giving page
 ### Database Diagram
 
 ![ReadView ERD](documentation/erd/erd.png)
+
+### Agile Methodology
+
+ReadView was developed using an Agile workflow, with work organised and tracked through a GitHub Kanban board.
+
+The Kanban board used the following columns to manage progress:
+
+- **Backlog** – ideas and user stories captured for future refinement.
+- **Todo** – prioritised tasks ready to be worked on.
+- **In Progress** – items currently being developed.
+- **Done** – completed tasks that meet the acceptance criteria.
+- **Future Features** – lower-priority enhancements planned for later iterations.
+
+To prioritise features effectively, the project used the **MoSCoW** method:
+
+- **Must Have** – essential functionality required for launch.
+- **Should Have** – important improvements that add significant value.
+- **Could Have** – nice-to-have features included if time allowed.
+- **Won't Have** – features intentionally scoped out for this release.
+
+Each user story on the project board was written with clear **acceptance criteria** and a set of actionable **tasks** to ensure development remained focused, testable, and aligned with project goals.
+
+As progress was made, stories were moved through the board columns. Completed features were documented in **Done**, while potential enhancements were moved to **Future Features** for later iterations.
 
 ## Features:
 
