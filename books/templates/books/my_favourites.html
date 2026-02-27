@@ -16,7 +16,12 @@
                     {% if favourite.book.genre.all %}
                     <div class="mb-3">
                         {% for genre in favourite.book.genre.all %}
-                        <span class="badge genre-badge btn-info me-1">{{ genre.name }}</span>
+                        <form method="POST" action="{% url 'home' %}" class="d-inline">
+                            {% csrf_token %}
+                            <input type="hidden" name="genre_filter" value="{{ genre.name }}">
+                            <button type="submit" class="badge genre-badge btn-info me-1 border-0">
+                                {{ genre.name }}</button>
+                        </form>
                         {% endfor %}
                     </div>
                     {% endif %}
