@@ -126,14 +126,14 @@ This combination was chosen to keep long-form content readable while giving page
 
 ### Colour Scheme
 
-| Colour                      | Value     | Preview                                                                                                                       | Usage                                                                                            |
-| --------------------------- | --------- | ----------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------ |
-| Background                  | `#fefefe` | <span style="display:inline-block;width:24px;height:24px;background:#fefefe;border:1px solid #ccc;border-radius:4px;"></span> | Main page background for a clean, high-readability layout                                        |
-| Card Background             | `#ffffff` | <span style="display:inline-block;width:24px;height:24px;background:#ffffff;border:1px solid #ccc;border-radius:4px;"></span> | Used on cards to separate content sections subtly                                                |
-| Primary Accent (Light Blue) | `#97bac4` | <span style="display:inline-block;width:24px;height:24px;background:#97bac4;border:1px solid #ccc;border-radius:4px;"></span> | Used for genre badges and highlight elements                                                     |
-| Dark Brown                  | `#3c2615` | <span style="display:inline-block;width:24px;height:24px;background:#3c2615;border:1px solid #ccc;border-radius:4px;"></span> | Used for dark sections such as the navbar/footer background                                      |
-| Rating Highlight            | `#ffa500` | <span style="display:inline-block;width:24px;height:24px;background:#ffa500;border:1px solid #ccc;border-radius:4px;"></span> | Used for checked star ratings to provide clear visual feedback                                   |
-| Faded Text                  | `#b1b1b1` | <span style="display:inline-block;width:24px;height:24px;background:#b1b1b1;border:1px solid #ccc;border-radius:4px;"></span> | Used for faded text to visually de-emphasise secondary information without reducing readability. |
+| Colour                      | Value     | Preview                                                   | Usage                                                                                            |
+| --------------------------- | --------- | --------------------------------------------------------- | ------------------------------------------------------------------------------------------------ |
+| Background                  | `#fefefe` | ![#fefefe](https://singlecolorimage.com/get/fefefe/24x24) | Main page background for a clean, high-readability layout                                        |
+| Card Background             | `#ffffff` | ![#ffffff](https://singlecolorimage.com/get/ffffff/24x24) | Used on cards to separate content sections subtly                                                |
+| Primary Accent (Light Blue) | `#97bac4` | ![#97bac4](https://singlecolorimage.com/get/97bac4/24x24) | Used for genre badges and highlight elements                                                     |
+| Dark Brown                  | `#3c2615` | ![#3c2615](https://singlecolorimage.com/get/3c2615/24x24) | Used for dark sections such as the navbar/footer background                                      |
+| Rating Highlight            | `#ffa500` | ![#ffa500](https://singlecolorimage.com/get/ffa500/24x24) | Used for checked star ratings to provide clear visual feedback                                   |
+| Faded Text                  | `#b1b1b1` | ![#b1b1b1](https://singlecolorimage.com/get/b1b1b1/24x24) | Used for faded text to visually de-emphasise secondary information without reducing readability. |
 
 ## Features:
 
