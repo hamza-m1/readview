@@ -63,7 +63,23 @@ Visit the [ReadView project board](https://github.com/users/hamza-m1/projects/10
 
 ### Wireframes
 
-Attach wireframes in this section
+To follow best practices, wireframes were developed for mobile, tablet and desktop sizes
+
+Wireframes were created in [Figma](https://www.figma.com/).
+
+#### Mobile Wireframes
+
+<details>
+<summary>Click here to see the Mobile Wireframes</summary>
+
+- Home page | Book detail page | Request a book page | About page
+  - ![screenshot](documentation/wireframes/mobile-wireframes-1.png)
+- My favourites page | My reviews page | Sign in page | Sign out page
+  - ![screenshot](documentation/wireframes/mobile-wireframes-2.png)
+- Register an account page | Visitor burger | Signed in burger
+  - ![screenshot](documentation/wireframes/mobile-wireframes-3.png)
+
+</details>
 
 ### Typography
 
