@@ -1,8 +1,10 @@
 :root {
-  --background: rgb(254, 254, 254);
+  --background: #fefefe;
   --light-blue: #97bac4;
   --dark-brown: #3c2615;
-  --card-bg: rgb(255, 255, 255);
+  --card-bg: #ffffff;
+  --rating: #ffa500;
+  --faded: #b1b1b1;
 }
 
 /* =========================
@@ -74,11 +76,11 @@ h6,
 }
 
 .faded {
-  color: rgb(177, 177, 177);
+  color: var(--faded);
 }
 
 .checked {
-  color: orange;
+  color: var(--rating);
 }
 
 /* =========================
