@@ -1,3 +1,9 @@
+## ReadView
+
+ReadView is a full-stack Django web application. It is a book review platform where users can browse books, read community reviews, rate titles, and manage personal favourites. Registered users can add, edit, and delete their own reviews, while admins manage the book catalogue and moderate content.
+
+Live site: [https://readview-73ce62ea5261.herokuapp.com/](https://readview-73ce62ea5261.herokuapp.com/)
+
 ## Table Of Contents:
 
 1. [Design & Planning](#design-&-planning)
