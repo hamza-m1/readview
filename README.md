@@ -81,6 +81,22 @@ Wireframes were created in [Figma](https://www.figma.com/).
 
 </details>
 
+#### Tablet Wireframes
+
+<details>
+<summary>Click here to see the Tablet Wireframes</summary>
+
+- Home page | Book detail page | Request a book page
+  - ![screenshot](documentation/wireframes/tablet-wireframes-1.png)
+- About page | My favourites page | My reviews page
+  - ![screenshot](documentation/wireframes/tablet-wireframes-2.png)
+- Sign in page | Sign out page | Register an account
+  - ![screenshot](documentation/wireframes/tablet-wireframes-3.png)
+- page Visitor burger | Signed in burger
+  - ![screenshot](documentation/wireframes/tablet-wireframes-4.png)
+
+</details>
+
 ### Typography
 
 Explain font you've used for your project
